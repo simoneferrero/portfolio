@@ -1,0 +1,161 @@
+html, body {
+  font-size: 2vw;
+  line-height: 2.5vw; }
+
+.corner {
+  width: 24vw;
+  height: 24vw; }
+
+.corner span {
+  bottom: 1.8vw;
+  font-size: 3.6vw;
+  line-height: 3.6vw; }
+
+#intro_corner {
+  left: -12vw;
+  top: -12vw; }
+
+#projects_corner {
+  right: -12vw;
+  top: -12vw; }
+
+#about_corner {
+  left: -12vw;
+  bottom: -12vw; }
+
+#contact_corner {
+  right: -12vw;
+  bottom: -12vw; }
+
+#homepage {
+  top: 1vw;
+  height: 51.1vw;
+  top: 50%;
+  margin-top: -25.55vw;
+  font-size: 2vw;
+  line-height: 2.5vw; }
+
+#homepage > div:nth-child(1) {
+  font-size: 5.5vw;
+  line-height: 6.5vw; }
+
+#homepage > div:nth-child(2) {
+  width: 40vw;
+  margin-left: -20vw;
+  line-height: 2vw; }
+
+#skills {
+  top: 5vw; }
+
+#target {
+  width: 28vw;
+  height: 28vw;
+  margin-left: -14vw;
+  font-size: 2.3vw; }
+
+#target > div > div {
+  margin: 0 auto;
+  margin-top: -.2vw; }
+
+#target > div:nth-child(1) {
+  margin-top: -.2vw; }
+
+#target > div:nth-child(5) > div {
+  margin-top: 1vw; }
+
+.skill {
+  width: 10.5vw;
+  height: 10.5vw;
+  font-size: 1.8vw;
+  line-height: 9.9vw;
+  border: 0.3vw solid #9e134c; }
+
+.skill:hover {
+  width: 12.25vw;
+  height: 12.25vw;
+  font-size: 2.1vw;
+  line-height: 11.65vw; }
+
+#html {
+  top: -2vw;
+  left: 6.5vw; }
+
+#css {
+  bottom: -6.4vw;
+  left: 6.1vw; }
+
+#javascript {
+  bottom: -17.1vw;
+  margin-left: -5.25vw; }
+
+#javascript:hover {
+  margin-left: -6.125vw; }
+
+#jquery {
+  top: -2vw;
+  right: 6.5vw; }
+
+#angular {
+  bottom: -6.4vw;
+  right: 6.1vw; }
+
+.arrow {
+  width: 12.25vw; }
+
+#top_left {
+  top: -9vw;
+  left: 3vw; }
+
+#bottom_left {
+  bottom: -12vw;
+  left: 0vw; }
+
+#bottom {
+  bottom: -26vw;
+  margin-left: -6.125vw; }
+
+#top_right {
+  top: -11vw;
+  right: 0; }
+
+#bottom_right {
+  bottom: -11vw;
+  right: 0; }
+
+.pointer {
+  width: 1.75vw;
+  height: 1.75vw; }
+
+#tl {
+  top: 13vw;
+  left: 29.165vw; }
+
+#bl {
+  bottom: 6.4vw;
+  left: 25.4vw; }
+
+#b {
+  bottom: 1vw;
+  margin-left: -0.885vw; }
+
+#tr {
+  top: 7.3vw;
+  right: 21.5vw; }
+
+#br {
+  bottom: 2.5vw;
+  right: 17.85vw; }
+
+#description {
+  width: 28vw;
+  height: 28vw;
+  margin-left: -14vw;
+  font-size: 3.2vw;
+  line-height: 3.9vw;
+  padding: 10%; }
+
+.text div {
+  font-size: 1.8vw;
+  line-height: 2.5vw; }
+
+/*# sourceMappingURL=portfolio_landscape.css.map */

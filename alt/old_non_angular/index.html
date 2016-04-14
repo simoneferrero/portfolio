@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portfolio Simone Ferrero</title>
+    <link rel="stylesheet" type="text/css" href="portfolio.css">
+    <link rel="stylesheet" media="(max-width: 1150px) and (min-aspect-ratio: 1/1)" type="text/css" href="portfolio_landscape.css">
+    <link rel="stylesheet" media="(max-width: 1000px)" type="text/css" href="portfolio_mobile.css">
+    <link rel="stylesheet" media="(max-aspect-ratio: 1/1)" type="text/css" href="portfolio_portrait.css">
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="portfolio.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700|Cinzel:400,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <script>
+      var introExpanded = false,
+        projectsExpanded = false,
+        aboutExpanded = false,
+        contactExpanded = false;
+      $(document)
+        .ready(function() {
+          corners();
+          shootTarget();
+          $("#background")
+            .click(function() {
+              if (introExpanded) {
+                introSliderClose();
+                introExpanded = false;
+              } else if (projectsExpanded) {
+                projectsSliderClose();
+                projectsExpanded = false;
+              } else if (aboutExpanded) {
+                aboutSliderClose();
+                aboutExpanded = false;
+              } else if (contactExpanded) {
+                contactSliderClose();
+                contactExpanded = false;
+              }
+            });
+          $(window)
+            .on("resize", function() {
+              resizing();
+              introSliderClose();
+              introExpanded = false;
+              projectsSliderClose();
+              projectsExpanded = false;
+              aboutSliderClose();
+              aboutExpanded = false;
+              contactSliderClose();
+              contactExpanded = false;
+            })
+        });
+    </script>
+    <div id="background">
+    </div>
+    <div class="corner" id="intro_corner">
+      <div class="one"></div>
+      <div class="two"></div>
+      <div class="three"></div>
+      <div class="four"></div>
+      <img src="arrow.png"/>
+      <span>Intro</span>
+    </div>
+    <div class="corner" id="projects_corner">
+      <div class="one"></div>
+      <div class="two"></div>
+      <div class="three"></div>
+      <div class="four"></div>
+      <img src="arrow.png"/>
+      <span>Projects</span>
+    </div>
+    <div class="corner" id="about_corner">
+      <div class="one"></div>
+      <div class="two"></div>
+      <div class="three"></div>
+      <div class="four"></div>
+      <img src="arrow.png"/>
+      <span>About</span>
+    </div>
+    <div class="corner" id="contact_corner">
+      <div class="one"></div>
+      <div class="two"></div>
+      <div class="three"></div>
+      <div class="four"></div>
+      <img src="arrow.png"/>
+      <span>Contact</span>
+    </div>
+    <div id="homepage">
+      <div>
+        <span>Hi, I'm Simone.</span>
+      </div>
+      <div>
+        <span>Welcome to my portfolio.</span>
+      </div>
+      <div id="skills">
+        <div id="target">
+          <div>1</div>
+          <div class="one"><div>2</div></div>
+          <div class="two"><div>3</div></div>
+          <div class="three"><div>4</div></div>
+          <div class="four"><div>5</div></div>
+        </div>
+        <div class="pointer" id="tl"></div>
+        <img src="arrow.png" class="arrow" id="top_left"/>
+        <div class="pointer" id="bl"></div>
+        <img src="arrow.png" class="arrow" id="bottom_left"/>
+        <div class="pointer" id="b"></div>
+        <img src="arrow.png" class="arrow" id="bottom"/>
+        <div class="pointer" id="tr"></div>
+        <img src="arrow.png" class="arrow" id="top_right"/>
+        <div class="pointer" id="br"></div>
+        <img src="arrow.png" class="arrow" id="bottom_right"/>
+        <div id="html" class="skill">
+          <span>HTML</span>
+        </div>
+        <div id="css" class="skill">
+          <span>CSS</span>
+        </div>
+        <div id="javascript" class="skill">
+          <span>JavaScript</span>
+        </div>
+        <div id="jquery" class="skill">
+          <span>jQuery</span>
+        </div>
+        <div id="angular" class="skill">
+          <span>AngularJS</span>
+        </div>
+        <div id="description">
+          <span>Click on a skill to see my proficiency</span>
+        </div>
+      </div>
+    </div>
+    <div class="tab text" id="intro">
+      <div>
+        <span>Hi, I'm Simone.<br />
+        I'm a fresh, junior, unbiased, self-taught <strong>web developer</strong> who likes to use adjectives.<br /><br />
+
+        When I code, I see myself as an archer. (well I really am an archer, but that's a story for another time).<br />
+        In the past few months, I've been collecting arrows and putting them in my "quiver of wisdom", by studying <strong>JavaScript (and its frameworks), CSS3 and HTML5</strong>.<br /><br />
+
+        If you are reading this, you are likely reviewing my application to work for your Company. I thank you very much for taking an interest in me, and I would like to show you that I am worthy of that interest.<br /><br />
+        I am ready to learn new tricks, code for a living, and <strong>shoot the target</strong>!
+        </span>
+      </div>
+    </div>
+    <div class="tab" id="projects">
+      <div><span>Samples of my work.</span></div>
+      <div>
+        <div class="icon">
+          <div><a target="_blank" href="decisionmaker/index.html"><img src="decision_maker_icon.png"/></a></div>
+          <div><h4>The Decision Maker<br /><br /></h4>
+            <span>A simple website with CSS and Javascript animations. The user can input any number of strings, one of which is chosen randomly by the program.</span>
+          </div>
+        </div>
+        <div class="icon">
+          <div><a target="_blank" href="cssdrawing/index.html"><img src="css_drawing_icon.png"/></a></div>
+          <div><h4>A CSS Drawing<br /><br /></h4>
+            <span>Although art is not my strong suit, in my free time I try to learn more about CSS by "painting" with it.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab text" id="about">
+      <div>
+        <span>Fun facts and trivia about me!<br /><br />
+          In 2013, I graduated in <strong>Psychology</strong> in Turin Italy. These studies allowed me to comprehend the human mind and behaviour, and gave me the tools to listen and care for other people, as well as to endure difficulties.<br />
+          But I wanted more than to become a psychologist. So, to get some strong experience of a creative environment and put my ability to write to use, I joined an <strong>advertising agency</strong> as a copywriter. Amazing times, that I treasure dearly. They shaped my professional profile greatly - plus points for working with great people, too.<br /><br />
+          Then, at the end of 2014, I decided to make a leap into the unknown and <strong>move to London</strong>. I was quickly hired as lettings administrator in an estate agency in Fulham, where I worked for seven months until September 2015. This was another important part of my life that made me grow on all fronts and get to know London's job market.<br /><br />
+          Fast forward to now, with months of <strong>studying and learning and coding</strong> under my belt, and I am ready for the next step, the most important one. I aim to be hired as a developer.<br />
+          <strong>It's what I like to do</strong>, simple as that. All I need is an opportunity.
+        </span>
+      </div>
+    </div>
+    <div class="tab text" id="contact">
+      <div>
+        <span>If you wish to reach me, the best way is to write an email to <a href="mailto:&#115;&#105;&#109;&#111;&#110;&#101;&#46;&#102;&#101;&#114;&#114;&#101;&#114;&#111;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;"><i>&#115;&#105;&#109;&#111;&#110;&#101;&#46;&#102;&#101;&#114;&#114;&#101;&#114;&#111;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;</i></a>.<br /><br />
+          For other contact details, and more info, please see my CV <a target="_blank" href="cvsimoneferrero.pdf"><i>HERE</i></a>.<br /><br />
+          I look forward to hearing from you!
+        </span>
+      </div>
+    </div>
+  </body>
+</html>

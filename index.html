@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portfolio Simone Ferrero</title>
+    <link rel="stylesheet" type="text/css" href="portfolio.css">
+    <link rel="stylesheet" media="(max-width: 1150px) and (min-aspect-ratio: 1/1)" type="text/css" href="portfolio_landscape.css">
+    <link rel="stylesheet" media="(max-width: 1000px)" type="text/css" href="portfolio_mobile.css">
+    <link rel="stylesheet" media="(max-aspect-ratio: 1/1)" type="text/css" href="portfolio_portrait.css">
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="portfolio.js"></script>
+    <script src="controllers.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700|Cinzel:400,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body ng-app="Portfolio">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <script>
+      var introExpanded = false,
+        projectsExpanded = false,
+        aboutExpanded = false,
+        contactExpanded = false;
+      $(document)
+        .ready(function() {
+          corners();
+          shootTarget();
+          $("#background")
+            .click(function() {
+              if (introExpanded) {
+                introSliderClose();
+                introExpanded = false;
+              } else if (projectsExpanded) {
+                projectsSliderClose();
+                projectsExpanded = false;
+              } else if (aboutExpanded) {
+                aboutSliderClose();
+                aboutExpanded = false;
+              } else if (contactExpanded) {
+                contactSliderClose();
+                contactExpanded = false;
+              }
+            });
+          $(window)
+            .on("resize", function() {
+              resizing();
+              introSliderClose();
+              introExpanded = false;
+              projectsSliderClose();
+              projectsExpanded = false;
+              aboutSliderClose();
+              aboutExpanded = false;
+              contactSliderClose();
+              contactExpanded = false;
+            })
+        });
+    </script>
+    <div id="background">
+    </div>
+    <div ng-controller="Corners">
+      <div class="corner" ng-repeat="corner in corners" ng-attr-id="{{ corner.id }}">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+        <div class="four"></div>
+        <img src="arrow.png"/>
+        <span>{{ corner.span }}</span>
+      </div>
+    </div>
+    <div id="homepage">
+      <div>
+        <span>Hi, I'm Simone.</span>
+      </div>
+      <div>
+        <span>Welcome to my portfolio.</span>
+      </div>
+      <div id="skills" ng-controller="Skills">
+        <div id="target">
+          <div>1</div>
+          <div class="one"><div>2</div></div>
+          <div class="two"><div>3</div></div>
+          <div class="three"><div>4</div></div>
+          <div class="four"><div>5</div></div>
+        </div>
+        <div class="pointer" ng-repeat="pointer in pointers" ng-attr-id="{{ pointer.idPointer }}"></div>
+        <img src="arrow.png" ng-repeat="pointer in pointers" class="arrow" ng-attr-id="{{ pointer.idImg }}"/>
+        <div class="skill" ng-repeat="skill in skills" ng-attr-id="{{ skill.id }}">
+          <span>{{ skill.span }}</span>
+        </div>
+        <div id="description">
+          <span>{{ description }}</span>
+        </div>
+      </div>
+    </div>
+    <div ng-controller="Tabs">
+      <div class="tab text" ng-repeat="tab in tabs" ng-attr-id="{{ tab.id }}">
+        <div>
+          <span ng-bind-html="tab.span | to_trusted"></span>
+        </div>
+      </div>
+      <div class="tab" id="projects" ng-controller="Projects">
+        <div><span>{{ title }}</span></div>
+        <div>
+          <a target="_blank" ng-repeat="project in projects" ng-href="{{ project.link }}"><div class="icon">
+            <div><img ng-src="{{ project.icon }}"/></div>
+            <div><h4>{{ project.title }}<br /><br /></h4>
+              <span>{{ project.description }}</span>
+            </div>
+          </div></a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

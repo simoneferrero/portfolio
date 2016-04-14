@@ -1,0 +1,33 @@
+.tab {
+  width: 90vw;
+  height: 70vh; }
+
+#intro {
+  top: 15vh;
+  left: 5vw; }
+
+.text div {
+  height: 58vh; }
+
+.text span {
+  max-height: 58vh; }
+
+#projects {
+  top: 15vh;
+  right: 5vw; }
+
+#projects > div:nth-child(1) {
+  max-height: 5vh; }
+
+#projects > div:nth-child(2) {
+  max-height: 51vh; }
+
+#about {
+  bottom: 15vh;
+  left: 5vw; }
+
+#contact {
+  bottom: 15vh;
+  right: 5vw; }
+
+/*# sourceMappingURL=portfolio_mobile.css.map */
