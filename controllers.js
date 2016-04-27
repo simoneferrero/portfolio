@@ -96,6 +96,12 @@ app.controller('Projects', ['$scope', function($scope) {
   $scope.title = 'Samples of my work.';
   $scope.projects = [
     {
+      title: 'Super Awesome Blackjack',
+      description: "(Work in progress: missing features, not responsive, no animations) This is my most ambitious project to date. A fully working Blackjack web application. Let's play!",
+      link: 'blackjack/index.html',
+      icon: 'blackjack_icon.png'
+    },
+    {
       title: 'EasyRecipes',
       description: 'My first take on an AngularJS app. It allows to add and convert the quantity of ingredients according to the number of servings selected by the user.',
       link: 'easyrecipes/index.html',
