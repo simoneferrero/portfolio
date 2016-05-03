@@ -97,7 +97,7 @@ app.controller('Projects', ['$scope', function($scope) {
   $scope.projects = [
     {
       title: 'Super Awesome Blackjack',
-      description: "(Work in progress: missing features, not responsive, no animations) This is my most ambitious project to date. A fully working Blackjack web application. Let's play!",
+      description: "(Work in progress: missing features, not responsive, no IE support, no animations) This is my most ambitious project to date. A fully working Blackjack web application. Let's play!",
       link: 'blackjack/index.html',
       icon: 'blackjack_icon.png'
     },
