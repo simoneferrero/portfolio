@@ -79,26 +79,26 @@ html, body {
   font-size: 2.1vh;
   line-height: 11.65vh; }
 
-#html {
+#skill1 {
   top: 2vh;
   left: 6.5vh; }
 
-#css {
+#skill2 {
   bottom: -10.4vh;
   left: 6.1vh; }
 
-#javascript {
+#skill3 {
   bottom: -21.1vh;
   margin-left: -5.25vh; }
 
-#javascript:hover {
+#skill3:hover {
   margin-left: -6.125vh; }
 
-#jquery {
+#skill4 {
   top: 2vh;
   right: 6.5vh; }
 
-#angular {
+#skill5 {
   bottom: -10.4vh;
   right: 6.1vh; }
 

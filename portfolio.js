@@ -249,23 +249,23 @@ function shootAngular() {
 }
 
 function shootTarget() {
-  $("#html")
+  $("#skill1")
     .click(function() {
       shootHTML();
     });
-  $("#css")
+  $("#skill2")
     .click(function() {
       shootCSS();
     });
-  $("#javascript")
+  $("#skill3")
     .click(function() {
       shootJS();
     });
-  $("#jquery")
+  $("#skill4")
     .click(function() {
       shootJQ();
     });
-  $("#angular")
+  $("#skill5")
     .click(function() {
       shootAngular();
     });
