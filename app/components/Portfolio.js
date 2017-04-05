@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleRoot} from 'radium';
 import HomeTab from './HomeTab';
+import MenuFolderLabel from './MenuFolderLabel';
 
 export default class Portfolio extends React.Component {
 
@@ -8,33 +9,63 @@ export default class Portfolio extends React.Component {
     super();
   }
 
+  getStyles() {
+    const menu = {
+      display: "flex",
+      flexDirection: "row",
+      marginTop: "20vh",
+    };
+
+    return {
+      menu: menu,
+    };
+  }
+
   render() {
-    const menuTabs = [
+    const pages = [
       {
         name: "home",
-        location: "center",
+        color: "orange",
+        zIndex: "700",
       },
       {
         name: "intro",
-        location: "leftTop",
+        color: "red",
+        zIndex: "690",
       },
       {
         name: "about",
-        location: "rightTop",
+        color: "blue",
+        zIndex: "680",
       },
       {
         name: "projects",
-        location: "leftBottom",
+        color: "green",
+        zIndex: "670",
       },
       {
         name: "contacts",
-        location: "rightBottom",
+        color: "yellow",
+        zIndex: "660",
       }
     ];
 
+    const style = this.getStyles();
+
     return (
       <StyleRoot>
-        <HomeTab />
+        <div style={[style.menu]}>
+          {pages.map(page => {
+            return (
+              <MenuFolderLabel
+                name={page.name.toUpperCase()}
+                color={page.color}
+                zIndex={page.zIndex}
+                key={page.name} />
+            );
+          })}
+        </div>
+        {/* <HomeTab /> */}
       </StyleRoot>
     );
   }
