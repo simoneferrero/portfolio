@@ -8,28 +8,40 @@ class MenuFolderLabel extends React.Component {
   }
 
   getStyles() {
+    const { zIndex, color, mainPage, name, onClick } = this.props;
+    const size = 18;
+    const unit = "vmax";
+    const tabShadow = (size / 50).toString() + unit + " " +
+      (size / 28).toString() + unit + " " +
+      (size / 30).toString() + unit + " #262626";
+
     const tab = {
       display: "flex",
       justifyContent: "center",
-      alignItems: "flex-end",
-      width: "18vmax",
-      height: "0",
-      marginLeft: "1vmax",
-      marginRight: "-3vmax",
-      borderBottom: "6vmax solid " + this.props.color,
-      borderRight: "5vmax solid transparent",
-      borderTopLeftRadius: "30vmax",
-      borderTopRightRadius: "100vmax",
-      zIndex: this.props.zIndex,
+      alignItems: "center",
+      width: size.toString() + unit,
+      height: (size / 3).toString() + unit,
+      marginRight: (-(size / 6)).toString() + unit,
+      backgroundColor: color,
+      borderTopLeftRadius: (size / 6).toString() + unit,
+      borderTopRightRadius: (size / 6).toString() + unit,
+      zIndex: mainPage === name ? "500" : zIndex,
+      boxShadow: tabShadow + ", -" + tabShadow,
+      //  boxShadow: "2px 0px 2px #000000, -2px 0px 2px #000000",
+      overflowY: "hidden",
+      cursor: "pointer",
     };
     const label = {
-      padding: ".5vmax 1vmax .5vmax 1vmax",
-      backgroundColor: "black",
-      color: "white",
-      borderRadius: ".5vmin",
-      fontSize: "1.5vmax",
-      marginBottom: "-4.5vmax",
-      marginLeft: "1vmax",
+      padding: (size / 40).toString() + unit,
+      backgroundColor: "#262626",
+      color: "#f2f2f2",
+      borderRadius: (size / 60).toString() + unit,
+      fontSize: (size / 10).toString() + unit,
+      fontFamily: "'Droid Sans', sans-serif",
+      textShadow: (size / 100).toString() + unit + " " +
+        (size / 150).toString() + unit + " " +
+        (size / 200).toString() + unit +" #595959",
+      userSelect: "none",
     };
 
     return {
@@ -40,14 +52,14 @@ class MenuFolderLabel extends React.Component {
 
   render() {
     const style = this.getStyles();
+    const { name, color, page, onClick } = this.props;
 
     return (
-      <div style={[style.tab]}>
-        <span style={[style.label]}>{this.props.name}</span>
+      <div style={[style.tab]} onClick={() => onClick(name, color, page)}>
+        <span style={[style.label]}>{name.toUpperCase()}</span>
       </div>
     );
   }
-
 }
 
 export default Radium(MenuFolderLabel);

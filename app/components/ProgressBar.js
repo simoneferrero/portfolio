@@ -10,6 +10,7 @@ class ProgressBar extends React.Component {
       width: 0,
       showPercent: false,
       size: this.resizePortrait(),
+      timeout: '',
     };
 
     this.showProgress = this.showProgress.bind(this);
@@ -19,13 +20,20 @@ class ProgressBar extends React.Component {
   componentDidMount() {
     const { autoStart } = this.props;
     if (autoStart >= 0) {
-      setTimeout(() => this.showProgress(), autoStart);
+      this.setState({
+        timeout: setTimeout(() => this.showProgress(), autoStart),
+      });
+
     }
 
     const mq = window.matchMedia("only screen and (orientation: portrait)");
     window.addEventListener("resize", () => this.setState({
       size: this.resizePortrait(),
     }));
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.state.timeout);
   }
 
   showProgress() {

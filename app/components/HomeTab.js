@@ -15,8 +15,9 @@ class HomeTab extends React.Component {
 
     return {
       wrapper: {
-        height: "100vh",
-        width: "100vw",
+        position: "absolute",
+        height: "100%",
+        width: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-around",
@@ -103,6 +104,7 @@ class HomeTab extends React.Component {
                       colors={language.colors}
                       width={language.width}
                       size={12}
+                      // autoStart={30000}
                       key={language.name}
                       >{language.name}</ProgressBar>
           })}
