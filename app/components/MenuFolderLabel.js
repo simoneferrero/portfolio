@@ -8,40 +8,38 @@ class MenuFolderLabel extends React.Component {
   }
 
   getStyles() {
-    const { zIndex, color, mainPage, name, onClick } = this.props;
-    const size = 18;
-    const unit = "vmax";
-    const tabShadow = (size / 50).toString() + unit + " " +
-      (size / 28).toString() + unit + " " +
-      (size / 30).toString() + unit + " #262626";
+    const { zIndex, color, name, size, unit, radius, shadow } = this.props;
+    // const tabShadow = (size / 50).toString() + unit + " " +
+    //   (size / 28).toString() + unit + " " +
+    //   (size / 30).toString() + unit + " #262626";
 
     const tab = {
+      position: "relative",
       display: "flex",
       justifyContent: "center",
-      alignItems: "center",
-      width: size.toString() + unit,
-      height: (size / 3).toString() + unit,
-      marginRight: (-(size / 6)).toString() + unit,
+      alignItems: "flex-start",
+      width: "22%",
+      height: "100%",
+      marginLeft: "-1.25%",
+      marginRight: "-1.25%",
       backgroundColor: color,
-      borderTopLeftRadius: (size / 6).toString() + unit,
-      borderTopRightRadius: (size / 6).toString() + unit,
-      zIndex: mainPage === name ? "500" : zIndex,
-      boxShadow: tabShadow + ", -" + tabShadow,
-      //  boxShadow: "2px 0px 2px #000000, -2px 0px 2px #000000",
-      overflowY: "hidden",
+      borderRadius: radius.toString() + unit,
+      zIndex: zIndex,
+      boxShadow: shadow + ", -" + shadow,
       cursor: "pointer",
     };
     const label = {
-      padding: (size / 40).toString() + unit,
+      padding: "3%",
       backgroundColor: "#262626",
       color: "#f2f2f2",
-      borderRadius: (size / 60).toString() + unit,
+      borderRadius: (radius / 15).toString() + unit,
       fontSize: (size / 10).toString() + unit,
       fontFamily: "'Droid Sans', sans-serif",
       textShadow: (size / 100).toString() + unit + " " +
         (size / 150).toString() + unit + " " +
         (size / 200).toString() + unit +" #595959",
       userSelect: "none",
+      marginTop: "8%",
     };
 
     return {
@@ -55,7 +53,7 @@ class MenuFolderLabel extends React.Component {
     const { name, color, page, onClick } = this.props;
 
     return (
-      <div style={[style.tab]} onClick={() => onClick(name, color, page)}>
+      <div style={[style.tab]} onClick={() => onClick(name)}>
         <span style={[style.label]}>{name.toUpperCase()}</span>
       </div>
     );
