@@ -1,73 +1,27 @@
 import React from 'react';
 import Radium from 'radium';
-// import MenuFolderTop from './MenuFolderTop';
-// import PageFolder from './PageFolder';
 import MenuFolderLabel from './MenuFolderLabel';
 
 class MenuFolder extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-      pages: {
-        home: {
-          color: "orange",
-          zIndex: "490",
-        },
-        intro: {
-          color: "red",
-          zIndex: "480",
-        },
-        about: {
-          color: "blue",
-          zIndex: "470",
-        },
-        projects: {
-          color: "green",
-          zIndex: "460",
-        },
-        contacts: {
-          color: "purple",
-          zIndex: "450",
-        }
-      },
-      main: "home",
-      color: "orange",
-    }
-    this.togglePage = this.togglePage.bind(this);
   }
-
-  togglePage(name) {
-    const { pages, main } = this.state;
-    const mainPage = main === name ? "home" : name;
-    const color = pages[mainPage].color;
-
-    this.setState({
-      main: mainPage,
-      color: color,
-    });
-  }
-
 
   getStyles() {
-    const { color } = this.state;
-    const size = 18;
-    const radius = (size / 6).toString();
-    const unit = "vmax";
-    const shadow = (size / 50).toString() + unit + " " +
-      (size / 28).toString() + unit + " " +
-      (size / 30).toString() + unit + " #262626";
+    const { color, radius, shadow, unit } = this.props;
 
     const menuFolder = {
       position: "fixed",
-      overflow: "hidden",
+      // overflow: "hidden",
       bottom: "0",
       left: "0",
-      height: "10vmax",
       width: "100vw",//this should be vmax
       display: "flex",
       justifyContent: "center",
       transform: "",
+      maxHeight: "18vh",//18vw in portrait
+      height: "10vmax",
       /*for portrait:
         -invert height/width
         -transform: rotate(90deg)
@@ -76,7 +30,7 @@ class MenuFolder extends React.Component {
       */
     }
     const menu = {
-      position: "absolute",
+      position: "relative",
       display: "flex",
       flexDirection: "row",
       justifyContent: "center",
@@ -84,7 +38,7 @@ class MenuFolder extends React.Component {
       width: "80%",
       top: "0",
     };
-    const page = {
+    const cover = {
       position: "absolute",
       width: "90%",
       height: "45%",
@@ -99,41 +53,32 @@ class MenuFolder extends React.Component {
     return {
       menuFolder: menuFolder,
       menu: menu,
-      page: page,
-      size: size,
-      radius: radius,
-      shadow: shadow,
-      unit: unit,
+      cover: cover,
     }
   }
 
   render() {
     const style = this.getStyles();
-    const { pages, main, pageColor } = this.state;
-
-    const labels = [];
-
-    for (let page in pages) {
-      labels.push(<MenuFolderLabel
-                    name={page}
-                    color={pages[page].color}
-                    zIndex={main === page ? "500" : pages[page].zIndex}
-                    size={style.size}
-                    unit={style.unit}
-                    radius={style.radius}
-                    shadow={style.shadow}
-                    onClick={this.togglePage}
-                    key={page} />);
-    }
-
+    const { labels, main, color, size, unit, radius, shadow, onClick } = this.props;
 
     return (
       <div style={[style.menuFolder]}>
-        <div style={[style.menu]}>
-          {labels}
-        </div>
-        <div style={[style.page]}>
-        </div>
+        {this.props.children}
+        <div style={[style.menu]} id="menu">{labels.map(label => {
+          return (//<div></div>
+            <MenuFolderLabel
+                          name={label.name}
+                          color={label.color}
+                          zIndex={label.zIndex}
+                          size={size}
+                          unit={unit}
+                          radius={radius}
+                          shadow={shadow}
+                          onClick={onClick}
+                          key={label.name} />
+          );
+        })}</div>
+        <div style={[style.cover]}></div>
       </div>
     );
   }

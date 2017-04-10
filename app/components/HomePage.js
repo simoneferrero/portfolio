@@ -2,48 +2,13 @@ import React from 'react';
 import Radium from 'radium';
 import ProgressBar from './ProgressBar';
 
-class HomeTab extends React.Component {
+class HomePage extends React.Component {
 
   constructor() {
     super();
   }
 
-  getStyles() {
-    const titles = {
-      fontWeight: "700",
-    };
-
-    return {
-      wrapper: {
-        position: "absolute",
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-around",
-        flexDirection: "column",
-        textAlign: "center",
-        zIndex: "900"
-      },
-      headers: {
-        width: "80vw",
-        marginTop: "5vh"
-      },
-      title: {
-        fontWeight: "700",
-        fontSize: "15vmin"
-      },
-      subTitle: {
-        fontWeight: "500",
-        fontSize: "7vmin"
-      },
-      skills: {
-        marginBottom: "5vh"
-      }
-    }
-  }
-
-  render() {
+  getLanguages() {
     const languages = [
       {
         name: "HTML/CSS",
@@ -87,13 +52,52 @@ class HomeTab extends React.Component {
       },
     ];
 
+    return languages;
+  }
+
+  getStyles() {
+    const wrapper = {
+      position: "absolute",
+      height: "100%",
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-around",
+      flexDirection: "column",
+      textAlign: "center",
+      zIndex: "900"
+    };
+    const headers = {
+      width: "95%",
+      marginTop: "3vh"
+    };
+    const title = {
+      fontWeight: "700",
+      fontSize: "14vmin"
+    };
+    const subTitle = {
+      fontWeight: "500",
+      fontSize: "5vmin"
+    };
+    const skills = {
+      marginBottom: "3vh"
+    };
+
+    return {
+      wrapper: wrapper,
+      headers: headers,
+      title: title,
+      subTitle: subTitle,
+      skills: skills
+    }
+  }
+
+  render() {
+    const languages = this.getLanguages();
     const style = this.getStyles();
 
     return (
-      <div
-        className="tab-pane fade in active"
-        id="home"
-        style={[style.wrapper]}>
+      <div style={[style.wrapper]}>
         <div style={[style.headers]}>
           <h1 style={[style.title]}>Hi, I'm Simone.</h1>
           <h3 style={[style.subTitle]}>Welcome to my portfolio.</h3>
@@ -103,8 +107,7 @@ class HomeTab extends React.Component {
             return <ProgressBar
                       colors={language.colors}
                       width={language.width}
-                      size={12}
-                      // autoStart={30000}
+                      size={10}
                       key={language.name}
                       >{language.name}</ProgressBar>
           })}
@@ -115,4 +118,4 @@ class HomeTab extends React.Component {
 
 }
 
-export default Radium(HomeTab);
+export default Radium(HomePage);

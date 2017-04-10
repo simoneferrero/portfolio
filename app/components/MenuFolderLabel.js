@@ -29,7 +29,6 @@ class MenuFolderLabel extends React.Component {
       cursor: "pointer",
     };
     const label = {
-      padding: "3%",
       backgroundColor: "#262626",
       color: "#f2f2f2",
       borderRadius: (radius / 15).toString() + unit,
@@ -40,6 +39,10 @@ class MenuFolderLabel extends React.Component {
         (size / 200).toString() + unit +" #595959",
       userSelect: "none",
       marginTop: "8%",
+      paddingTop: (size / 30).toString() + unit,
+      paddingBottom: (size / 30).toString() + unit,
+      paddingLeft: (size / 20).toString() + unit,
+      paddingRight: (size / 20).toString() + unit,
     };
 
     return {
@@ -53,7 +56,8 @@ class MenuFolderLabel extends React.Component {
     const { name, color, page, onClick } = this.props;
 
     return (
-      <div style={[style.tab]} onClick={() => onClick(name)}>
+      // <div style={[style.tab]} onClick={() => onClick(name)}>
+      <div style={[style.tab]} onClick={() => onClick(name, color)}>
         <span style={[style.label]}>{name.toUpperCase()}</span>
       </div>
     );
