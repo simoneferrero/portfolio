@@ -78,61 +78,64 @@ export default class Portfolio extends React.Component {
     const size = 18;
     const radius = (size / 6);
     const unit = "vmax";
-    const shadow = (size / 50).toString() + unit + " " +
-      (size / 28).toString() + unit + " " +
-      (size / 30).toString() + unit + " #262626";
+    const shadow = `${size/50}${unit} ${size/28}${unit} ${size/30}${unit} #262626`;
+    const portfolio = {
+      overflowY: "hidden",
+      height: "100vh",
+      width: "100vw",
+      position: "relative",
+      marginTop: "0",
+      marginLeft: "0",
+      backgroundImage: "url('https://img.clipartfox.com/61cfbe492a520e9ca8269362dc2489b2_wood-grain-texture-wood-grain-desktop-clipart_3888-2592.jpeg')",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      // fontFamily: "'Neucha', cursive",
+      // fontFamily: "'Caveat', cursive",
+      // fontFamily: "'Architects Daughter', cursive",
+      fontFamily: "'Coming Soon', cursive",
+    };
 
     return {
-      portfolio: {
-        overflowY: "hidden",
-        height: "100vh",
-        width: "100vw",
-        position: "relative",
-        marginTop: "0",
-        marginLeft: "0",
-        backgroundImage: "url('https://s-media-cache-ak0.pinimg.com/originals/89/c3/be/89c3beddf3c836e9b04430020d9cf32b.jpg')",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      },
-      size: size,
-      radius: radius,
-      shadow: shadow,
-      unit: unit,
+      size,
+      radius,
+      shadow,
+      unit,
+      portfolio,
     }
   }
 
   render() {
-    const style = this.getStyles();
+    const { size, radius, unit, shadow, portfolio } = this.getStyles();
     const elements = this.getElements();
     const { main, color } = this.state;
-    const { size, unit, radius, shadow } = style;
     const onClick = this.togglePage;
 
     const labels = [];
     const pages = [];
 
     for (let element in elements) {
+      const { zIndex, color, contents } = elements[element];
       const common = {
         name: element,
-        zIndex: main === element ? "500" : elements[element].zIndex,
+        zIndex: main === element ? "500" : zIndex,
       };
 
       labels.push({
         ...common,
-        color: elements[element].color,
+        color: color,
       });
 
       pages.push({
         ...common,
-        offSet: main === element ? "20vh" : "-71vh",
-        contents: elements[element].contents,
+        offSet: main === element ? 20 : -71,//vh must be unit
+        contents: contents,
       });
     }
 
     return (
       <StyleRoot>
-        <div style={[style.portfolio]}>
+        <div style={portfolio}>
           <MenuFolder
             labels={labels}
             main={main}
@@ -143,9 +146,16 @@ export default class Portfolio extends React.Component {
             shadow={shadow}
             onClick={onClick}>
             {pages.map(page => {
+              const { zIndex, offSet, name, contents } = page;
               return (
-                <Page zIndex={page.zIndex} offSet={page.offSet} shadow={shadow} key={page.name}>
-                  {page.contents}
+                <Page
+                  zIndex={zIndex}
+                  offSet={offSet}
+                  shadow={shadow}
+                  size={size}
+                  unit={unit}
+                  key={name}>
+                  {contents}
                 </Page>
               );
             })}
@@ -154,5 +164,4 @@ export default class Portfolio extends React.Component {
       </StyleRoot>
     );
   }
-
 }

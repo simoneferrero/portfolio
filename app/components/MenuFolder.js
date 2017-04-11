@@ -4,16 +4,11 @@ import MenuFolderLabel from './MenuFolderLabel';
 
 class MenuFolder extends React.Component {
 
-  constructor() {
-    super();
-  }
-
   getStyles() {
     const { color, radius, shadow, unit } = this.props;
 
     const menuFolder = {
       position: "fixed",
-      // overflow: "hidden",
       bottom: "0",
       left: "0",
       width: "100vw",//this should be vmax
@@ -44,28 +39,37 @@ class MenuFolder extends React.Component {
       height: "45%",
       backgroundColor: color,
       zIndex: "900",
-      borderTopLeftRadius: radius.toString() + unit,
-      borderTopRightRadius: radius.toString() + unit,
-      boxShadow: shadow + ", -" + shadow,
+      borderTopLeftRadius: `${radius}${unit}`,
+      borderTopRightRadius: `${radius}${unit}`,
+      boxShadow: `${shadow}, -${shadow}`,
       bottom: "0",
     };
 
     return {
-      menuFolder: menuFolder,
-      menu: menu,
-      cover: cover,
+      menuFolder,
+      menu,
+      cover,
     }
   }
 
   render() {
-    const style = this.getStyles();
-    const { labels, main, color, size, unit, radius, shadow, onClick } = this.props;
+    const { menuFolder, menu, cover } = this.getStyles();
+    const {
+      labels,
+      main,
+      color,
+      size,
+      unit,
+      radius,
+      shadow,
+      children,
+      onClick } = this.props;
 
     return (
-      <div style={[style.menuFolder]}>
-        {this.props.children}
-        <div style={[style.menu]} id="menu">{labels.map(label => {
-          return (//<div></div>
+      <div style={menuFolder}>
+        {children}
+        <div style={menu} id="menu">{labels.map(label => {
+          return (
             <MenuFolderLabel
                           name={label.name}
                           color={label.color}
@@ -78,7 +82,7 @@ class MenuFolder extends React.Component {
                           key={label.name} />
           );
         })}</div>
-        <div style={[style.cover]}></div>
+        <div style={cover}></div>
       </div>
     );
   }

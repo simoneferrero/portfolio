@@ -4,10 +4,6 @@ import ProgressBar from './ProgressBar';
 
 class HomePage extends React.Component {
 
-  constructor() {
-    super();
-  }
-
   getLanguages() {
     const languages = [
       {
@@ -65,22 +61,24 @@ class HomePage extends React.Component {
       justifyContent: "space-around",
       flexDirection: "column",
       textAlign: "center",
-      zIndex: "900"
+      zIndex: "900",
+      bottom: "2.5vh",
     };
     const headers = {
       width: "95%",
-      marginTop: "3vh"
+      marginTop: "3vh",
+      fontFamily: "'Special Elite', cursive",
     };
     const title = {
       fontWeight: "700",
-      fontSize: "14vmin"
+      fontSize: "14vmin",
     };
     const subTitle = {
       fontWeight: "500",
-      fontSize: "5vmin"
+      fontSize: "5vmin",
     };
     const skills = {
-      marginBottom: "3vh"
+      marginBottom: "3vh",
     };
 
     return {
@@ -94,22 +92,23 @@ class HomePage extends React.Component {
 
   render() {
     const languages = this.getLanguages();
-    const style = this.getStyles();
+    const { wrapper, headers, title, subTitle, skills } = this.getStyles();
 
     return (
-      <div style={[style.wrapper]}>
-        <div style={[style.headers]}>
-          <h1 style={[style.title]}>Hi, I'm Simone.</h1>
-          <h3 style={[style.subTitle]}>Welcome to my portfolio.</h3>
+      <div style={wrapper}>
+        <div style={headers}>
+          <h1 style={title}>Hi, I'm Simone.</h1>
+          <h3 style={subTitle}>Welcome to my portfolio.</h3>
         </div>
-        <div style={[style.skills]}>
+        <div style={skills}>
           {languages.map(language => {
-            return <ProgressBar
-                      colors={language.colors}
-                      width={language.width}
+            const { colors, width, name } = language;
+            return (<ProgressBar
+                      colors={colors}
+                      width={width}
                       size={10}
-                      key={language.name}
-                      >{language.name}</ProgressBar>
+                      key={name}
+                      >{name}</ProgressBar>);
           })}
         </div>
       </div>

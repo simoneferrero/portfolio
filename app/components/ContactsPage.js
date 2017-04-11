@@ -3,10 +3,6 @@ import Radium from 'radium';
 
 class ContactsPage extends React.Component {
 
-  constructor() {
-    super();
-  }
-
   getStyles() {
     const wrapper = {
       position: "absolute",
@@ -18,7 +14,8 @@ class ContactsPage extends React.Component {
       flexDirection: "column",
       textAlign: "left",
       zIndex: "900",
-      padding: "10%",
+      padding: "5%",
+      bottom: "2.5vh",
     };
     return {
       wrapper: wrapper,
@@ -26,25 +23,23 @@ class ContactsPage extends React.Component {
   }
 
   render() {
-    const style = this.getStyles();
+    const { wrapper } = this.getStyles();
 
     return (
-      <div style={[style.wrapper]}>
+      <div style={wrapper}>
         <span>
-          If you wish to reach me, write an email to <a
-            href="mailto:simone.ferrero@outlook.com">simone.ferrero@outlook.com
-          </a>.<br />
+          Have I sparked your interest? Great! Let's chat!
           <br />
-          For other contact details, and more info, please see <a
-            target="_blank" href="cvsimoneferrero.pdf">
-            my CV</a>.<br />
           <br />
-          You can also check out my experience on <a target="_blank"
-            href="https://www.linkedin.com/in/simoneferrero/">
-            Linkedin</a>,
-          or see what I'm working on on <a target="_blank"
-            href="https://www.github.com/simoneferrero">
-            GitHub</a>.<br />
+          The fastest way to reach me is to write an email to <a href="mailto:simone.ferrero@outlook.com">simone.ferrero@outlook.com</a>.
+          <br />
+          <br />
+          For other contact details, and more info, please see <a target="_blank" href="cvsimoneferrero.pdf">my CV</a>.
+          <br />
+          <br />
+          You can also check out my profile on <a target="_blank" href="https://www.linkedin.com/in/simoneferrero/">Linkedin</a>,
+          or see what I'm working on, on <a target="_blank" href="https://www.github.com/simoneferrero">GitHub</a>.
+          <br />
           <br />
           I look forward to hearing from you!
         </span>

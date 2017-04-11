@@ -3,10 +3,6 @@ import Radium from 'radium';
 
 class IntroPage extends React.Component {
 
-  constructor() {
-    super();
-  }
-
   getStyles() {
     const wrapper = {
       position: "absolute",
@@ -18,7 +14,8 @@ class IntroPage extends React.Component {
       flexDirection: "column",
       textAlign: "justify",
       zIndex: "900",
-      padding: "10%",
+      padding: "5%",
+      bottom: "2.5vh",
     };
     return {
       wrapper: wrapper,
@@ -26,26 +23,29 @@ class IntroPage extends React.Component {
   }
 
   render() {
-    const style = this.getStyles();
+    const { wrapper } = this.getStyles();
 
     return (
-      <div style={[style.wrapper]}>
+      <div style={wrapper}>
         <span>
-          Hi, I'm Simone.<br />
-          I'm a driven, hungry, junior, ~young (*uhm...*) web developer who likes
-          to use adjectives.<br />
+          Hi, I'm Simone.
           <br />
-          When I code, I see myself as an archer. (well I really am an archer,
-          but that's a story for another time).<br />
-          My arrows? JavaScript (and its main frameworks), PHP, CSS3, HTML5...
-          And any other technology I can put my hands on!<br />
+          I'm a driven, hungry, ~young (*ahem...*), junior Web Developer who
+          likes to use adjectives.
+          <br />
+          <br />
+          I like coding for the web. I am especially passionate about
+          JavaScript (ReactJS, I mean WOW!), PHP, CSS3, HTML5... Well, most
+          of the technologies on which I get my hands fascinate me!
+          <br />
           <br />
           If you are reading this, I thank you very much for taking an
-          interest in me: I'd be happy to hear from you and get all
-          chitty-chatty about our passion for programming.<br />
+          interest in me: I'd be happy to hear from you and share our
+          experiences over a good cuppa.
           <br />
-          In the meanwhile, you'll find me doing what I love most:
-          shooting the target!
+          <br />
+          After all, it's only by learning from others that one can truly
+          improve oneself, and I intend to apply this teaching to the letter!
         </span>
       </div>
     );

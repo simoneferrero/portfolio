@@ -3,10 +3,6 @@ import Radium from 'radium';
 
 class IntroPage extends React.Component {
 
-  constructor() {
-    super();
-  }
-
   getStyles() {
     const wrapper = {
       position: "absolute",
@@ -18,7 +14,8 @@ class IntroPage extends React.Component {
       flexDirection: "column",
       textAlign: "justify",
       zIndex: "900",
-      padding: "10%",
+      padding: "5%",
+      bottom: "2.5vh",
     };
     return {
       wrapper: wrapper,
@@ -26,10 +23,10 @@ class IntroPage extends React.Component {
   }
 
   render() {
-    const style = this.getStyles();
+    const { wrapper } = this.getStyles();
 
     return (
-      <div style={[style.wrapper]}>
+      <div style={wrapper}>
         <span>
           Projects coming!
         </span>

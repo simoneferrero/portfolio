@@ -21629,39 +21629,46 @@
 	      var size = 18;
 	      var radius = size / 6;
 	      var unit = "vmax";
-	      var shadow = (size / 50).toString() + unit + " " + (size / 28).toString() + unit + " " + (size / 30).toString() + unit + " #262626";
+	      var shadow = '' + size / 50 + unit + ' ' + size / 28 + unit + ' ' + size / 30 + unit + ' #262626';
+	      var portfolio = {
+	        overflowY: "hidden",
+	        height: "100vh",
+	        width: "100vw",
+	        position: "relative",
+	        marginTop: "0",
+	        marginLeft: "0",
+	        backgroundImage: "url('https://img.clipartfox.com/61cfbe492a520e9ca8269362dc2489b2_wood-grain-texture-wood-grain-desktop-clipart_3888-2592.jpeg')",
+	        backgroundRepeat: "no-repeat",
+	        backgroundPosition: "center",
+	        backgroundSize: "cover",
+	        // fontFamily: "'Neucha', cursive",
+	        // fontFamily: "'Caveat', cursive",
+	        // fontFamily: "'Architects Daughter', cursive",
+	        fontFamily: "'Coming Soon', cursive"
+	      };
 
 	      return {
-	        portfolio: {
-	          overflowY: "hidden",
-	          height: "100vh",
-	          width: "100vw",
-	          position: "relative",
-	          marginTop: "0",
-	          marginLeft: "0",
-	          backgroundImage: "url('https://s-media-cache-ak0.pinimg.com/originals/89/c3/be/89c3beddf3c836e9b04430020d9cf32b.jpg')",
-	          backgroundRepeat: "no-repeat",
-	          backgroundPosition: "center",
-	          backgroundSize: "cover"
-	        },
 	        size: size,
 	        radius: radius,
 	        shadow: shadow,
-	        unit: unit
+	        unit: unit,
+	        portfolio: portfolio
 	      };
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var style = this.getStyles();
+	      var _getStyles = this.getStyles(),
+	          size = _getStyles.size,
+	          radius = _getStyles.radius,
+	          unit = _getStyles.unit,
+	          shadow = _getStyles.shadow,
+	          portfolio = _getStyles.portfolio;
+
 	      var elements = this.getElements();
 	      var _state = this.state,
 	          main = _state.main,
 	          color = _state.color;
-	      var size = style.size,
-	          unit = style.unit,
-	          radius = style.radius,
-	          shadow = style.shadow;
 
 	      var onClick = this.togglePage;
 
@@ -21669,18 +21676,23 @@
 	      var pages = [];
 
 	      for (var element in elements) {
+	        var _elements$element = elements[element],
+	            zIndex = _elements$element.zIndex,
+	            _color = _elements$element.color,
+	            contents = _elements$element.contents;
+
 	        var common = {
 	          name: element,
-	          zIndex: main === element ? "500" : elements[element].zIndex
+	          zIndex: main === element ? "500" : zIndex
 	        };
 
 	        labels.push(_extends({}, common, {
-	          color: elements[element].color
+	          color: _color
 	        }));
 
 	        pages.push(_extends({}, common, {
-	          offSet: main === element ? "20vh" : "-71vh",
-	          contents: elements[element].contents
+	          offSet: main === element ? 20 : -71, //vh must be unit
+	          contents: contents
 	        }));
 	      }
 
@@ -21689,7 +21701,7 @@
 	        null,
 	        _react2.default.createElement(
 	          'div',
-	          { style: [style.portfolio] },
+	          { style: portfolio },
 	          _react2.default.createElement(
 	            _MenuFolder2.default,
 	            {
@@ -21702,10 +21714,21 @@
 	              shadow: shadow,
 	              onClick: onClick },
 	            pages.map(function (page) {
+	              var zIndex = page.zIndex,
+	                  offSet = page.offSet,
+	                  name = page.name,
+	                  contents = page.contents;
+
 	              return _react2.default.createElement(
 	                _Page2.default,
-	                { zIndex: page.zIndex, offSet: page.offSet, shadow: shadow, key: page.name },
-	                page.contents
+	                {
+	                  zIndex: zIndex,
+	                  offSet: offSet,
+	                  shadow: shadow,
+	                  size: size,
+	                  unit: unit,
+	                  key: name },
+	                contents
 	              );
 	            })
 	          )
@@ -25909,7 +25932,7 @@
 	  function MenuFolder() {
 	    _classCallCheck(this, MenuFolder);
 
-	    return _possibleConstructorReturn(this, (MenuFolder.__proto__ || Object.getPrototypeOf(MenuFolder)).call(this));
+	    return _possibleConstructorReturn(this, (MenuFolder.__proto__ || Object.getPrototypeOf(MenuFolder)).apply(this, arguments));
 	  }
 
 	  _createClass(MenuFolder, [{
@@ -25924,7 +25947,6 @@
 
 	      var menuFolder = {
 	        position: "fixed",
-	        // overflow: "hidden",
 	        bottom: "0",
 	        left: "0",
 	        width: "100vw", //this should be vmax
@@ -25949,9 +25971,9 @@
 	        height: "45%",
 	        backgroundColor: color,
 	        zIndex: "900",
-	        borderTopLeftRadius: radius.toString() + unit,
-	        borderTopRightRadius: radius.toString() + unit,
-	        boxShadow: shadow + ", -" + shadow,
+	        borderTopLeftRadius: '' + radius + unit,
+	        borderTopRightRadius: '' + radius + unit,
+	        boxShadow: shadow + ', -' + shadow,
 	        bottom: "0"
 	      };
 
@@ -25964,7 +25986,11 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var style = this.getStyles();
+	      var _getStyles = this.getStyles(),
+	          menuFolder = _getStyles.menuFolder,
+	          menu = _getStyles.menu,
+	          cover = _getStyles.cover;
+
 	      var _props2 = this.props,
 	          labels = _props2.labels,
 	          main = _props2.main,
@@ -25973,32 +25999,31 @@
 	          unit = _props2.unit,
 	          radius = _props2.radius,
 	          shadow = _props2.shadow,
+	          children = _props2.children,
 	          onClick = _props2.onClick;
 
 
 	      return _react2.default.createElement(
 	        'div',
-	        { style: [style.menuFolder] },
-	        this.props.children,
+	        { style: menuFolder },
+	        children,
 	        _react2.default.createElement(
 	          'div',
-	          { style: [style.menu], id: 'menu' },
+	          { style: menu, id: 'menu' },
 	          labels.map(function (label) {
-	            return (//<div></div>
-	              _react2.default.createElement(_MenuFolderLabel2.default, {
-	                name: label.name,
-	                color: label.color,
-	                zIndex: label.zIndex,
-	                size: size,
-	                unit: unit,
-	                radius: radius,
-	                shadow: shadow,
-	                onClick: onClick,
-	                key: label.name })
-	            );
+	            return _react2.default.createElement(_MenuFolderLabel2.default, {
+	              name: label.name,
+	              color: label.color,
+	              zIndex: label.zIndex,
+	              size: size,
+	              unit: unit,
+	              radius: radius,
+	              shadow: shadow,
+	              onClick: onClick,
+	              key: label.name });
 	          })
 	        ),
-	        _react2.default.createElement('div', { style: [style.cover] })
+	        _react2.default.createElement('div', { style: cover })
 	      );
 	    }
 	  }]);
@@ -26039,10 +26064,10 @@
 	var MenuFolderLabel = function (_React$Component) {
 	  _inherits(MenuFolderLabel, _React$Component);
 
-	  function MenuFolderLabel(props) {
+	  function MenuFolderLabel() {
 	    _classCallCheck(this, MenuFolderLabel);
 
-	    return _possibleConstructorReturn(this, (MenuFolderLabel.__proto__ || Object.getPrototypeOf(MenuFolderLabel)).call(this, props));
+	    return _possibleConstructorReturn(this, (MenuFolderLabel.__proto__ || Object.getPrototypeOf(MenuFolderLabel)).apply(this, arguments));
 	  }
 
 	  _createClass(MenuFolderLabel, [{
@@ -26056,11 +26081,10 @@
 	          unit = _props.unit,
 	          radius = _props.radius,
 	          shadow = _props.shadow;
-	      // const tabShadow = (size / 50).toString() + unit + " " +
-	      //   (size / 28).toString() + unit + " " +
-	      //   (size / 30).toString() + unit + " #262626";
+
 
 	      var tab = {
+	        zIndex: zIndex,
 	        position: "relative",
 	        display: "flex",
 	        justifyContent: "center",
@@ -26070,24 +26094,23 @@
 	        marginLeft: "-1.25%",
 	        marginRight: "-1.25%",
 	        backgroundColor: color,
-	        borderRadius: radius.toString() + unit,
-	        zIndex: zIndex,
-	        boxShadow: shadow + ", -" + shadow,
+	        borderRadius: '' + radius + unit,
+	        boxShadow: shadow + ', -' + shadow,
 	        cursor: "pointer"
 	      };
 	      var label = {
 	        backgroundColor: "#262626",
 	        color: "#f2f2f2",
-	        borderRadius: (radius / 15).toString() + unit,
-	        fontSize: (size / 10).toString() + unit,
-	        fontFamily: "'Droid Sans', sans-serif",
-	        textShadow: (size / 100).toString() + unit + " " + (size / 150).toString() + unit + " " + (size / 200).toString() + unit + " #595959",
+	        borderRadius: '' + radius / 15 + unit,
+	        fontSize: '' + size / 10 + unit,
+	        fontFamily: "'Special Elite', cursive",
+	        textShadow: '' + size / 100 + unit + ' ' + size / 150 + unit + ' ' + size / 200 + unit + ' #595959',
 	        userSelect: "none",
 	        marginTop: "8%",
-	        paddingTop: (size / 30).toString() + unit,
-	        paddingBottom: (size / 30).toString() + unit,
-	        paddingLeft: (size / 20).toString() + unit,
-	        paddingRight: (size / 20).toString() + unit
+	        paddingTop: '' + size / 30 + unit,
+	        // paddingBottom: `${size / 50}${unit}`,
+	        paddingLeft: '' + size / 20 + unit,
+	        paddingRight: '' + size / 20 + unit
 	      };
 
 	      return {
@@ -26098,7 +26121,10 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var style = this.getStyles();
+	      var _getStyles = this.getStyles(),
+	          tab = _getStyles.tab,
+	          label = _getStyles.label;
+
 	      var _props2 = this.props,
 	          name = _props2.name,
 	          color = _props2.color,
@@ -26110,12 +26136,12 @@
 	        // <div style={[style.tab]} onClick={() => onClick(name)}>
 	        _react2.default.createElement(
 	          'div',
-	          { style: [style.tab], onClick: function onClick() {
+	          { style: tab, onClick: function onClick() {
 	              return _onClick(name, color);
 	            } },
 	          _react2.default.createElement(
 	            'span',
-	            { style: [style.label] },
+	            { style: label },
 	            name.toUpperCase()
 	          )
 	        )
@@ -26159,10 +26185,10 @@
 	var Page = function (_React$Component) {
 	  _inherits(Page, _React$Component);
 
-	  function Page(props) {
+	  function Page() {
 	    _classCallCheck(this, Page);
 
-	    return _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
+	    return _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).apply(this, arguments));
 	  }
 
 	  _createClass(Page, [{
@@ -26171,32 +26197,71 @@
 	      var _props = this.props,
 	          zIndex = _props.zIndex,
 	          offSet = _props.offSet,
-	          shadow = _props.shadow;
+	          shadow = _props.shadow,
+	          size = _props.size,
+	          unit = _props.unit;
 
-	      var page = {
+	      var wrapper = {
+	        zIndex: zIndex,
+	        position: "absolute",
 	        width: "75vw",
 	        height: "75vh",
+	        bottom: offSet + 'vh',
+	        // left: "12.5vw",//these will give problems when resizing on tall screens
+	        transition: "bottom linear .75s" };
+	      var page = {
+	        width: "75vw",
+	        height: "70vh",
 	        position: "absolute",
-	        bottom: offSet,
-	        left: "12.5vw", //these will give problems when resizing on tall screens
+	        top: "4.88vh",
 	        backgroundColor: "white",
-	        transition: "bottom linear .75s",
-	        // transition: "left linear 0.75s",//for portrait
-	        zIndex: zIndex,
-	        boxShadow: shadow + ", -" + shadow
+	        boxShadow: shadow + ', -' + shadow,
+	        fontSize: '2.2vmin'
+	      };
+	      var pageTop = {
+	        width: "75vw",
+	        height: "0",
+	        position: "absolute",
+	        borderBottom: "5vh solid white",
+	        borderLeft: "5vh solid transparent",
+	        boxShadow: shadow
+	      };
+	      var slantedCorner = {
+	        position: "absolute",
+	        width: "5vh",
+	        height: "0",
+	        borderBottom: "5vh solid white",
+	        borderLeft: "5vh solid transparent",
+	        boxShadow: '' + size / 50 + unit + ' ' + size / 50 + unit + ' ' + size / 30 + unit + ' #262626'
 	      };
 	      return {
-	        page: page
+	        wrapper: wrapper,
+	        page: page,
+	        pageTop: pageTop,
+	        slantedCorner: slantedCorner
 	      };
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var style = this.getStyles();
+	      var _getStyles = this.getStyles(),
+	          wrapper = _getStyles.wrapper,
+	          page = _getStyles.page,
+	          pageTop = _getStyles.pageTop,
+	          slantedCorner = _getStyles.slantedCorner;
+
+	      var children = this.props.children;
+
 	      return _react2.default.createElement(
 	        'div',
-	        { style: [style.page] },
-	        this.props.children
+	        { style: wrapper },
+	        _react2.default.createElement('div', { style: pageTop }),
+	        _react2.default.createElement(
+	          'div',
+	          { style: page },
+	          children
+	        ),
+	        _react2.default.createElement('div', { style: slantedCorner })
 	      );
 	    }
 	  }]);
@@ -26244,7 +26309,7 @@
 	  function HomePage() {
 	    _classCallCheck(this, HomePage);
 
-	    return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this));
+	    return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).apply(this, arguments));
 	  }
 
 	  _createClass(HomePage, [{
@@ -26301,11 +26366,13 @@
 	        justifyContent: "space-around",
 	        flexDirection: "column",
 	        textAlign: "center",
-	        zIndex: "900"
+	        zIndex: "900",
+	        bottom: "2.5vh"
 	      };
 	      var headers = {
 	        width: "95%",
-	        marginTop: "3vh"
+	        marginTop: "3vh",
+	        fontFamily: "'Special Elite', cursive"
 	      };
 	      var title = {
 	        fontWeight: "700",
@@ -26331,38 +26398,48 @@
 	    key: 'render',
 	    value: function render() {
 	      var languages = this.getLanguages();
-	      var style = this.getStyles();
+
+	      var _getStyles = this.getStyles(),
+	          wrapper = _getStyles.wrapper,
+	          headers = _getStyles.headers,
+	          title = _getStyles.title,
+	          subTitle = _getStyles.subTitle,
+	          skills = _getStyles.skills;
 
 	      return _react2.default.createElement(
 	        'div',
-	        { style: [style.wrapper] },
+	        { style: wrapper },
 	        _react2.default.createElement(
 	          'div',
-	          { style: [style.headers] },
+	          { style: headers },
 	          _react2.default.createElement(
 	            'h1',
-	            { style: [style.title] },
+	            { style: title },
 	            'Hi, I\'m Simone.'
 	          ),
 	          _react2.default.createElement(
 	            'h3',
-	            { style: [style.subTitle] },
+	            { style: subTitle },
 	            'Welcome to my portfolio.'
 	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { style: [style.skills] },
+	          { style: skills },
 	          languages.map(function (language) {
+	            var colors = language.colors,
+	                width = language.width,
+	                name = language.name;
+
 	            return _react2.default.createElement(
 	              _ProgressBar2.default,
 	              {
-	                colors: language.colors,
-	                width: language.width,
+	                colors: colors,
+	                width: width,
 	                size: 10,
-	                key: language.name
+	                key: name
 	              },
-	              language.name
+	              name
 	            );
 	          })
 	        )
@@ -26421,7 +26498,6 @@
 	    };
 
 	    _this.showProgress = _this.showProgress.bind(_this);
-	    _this.resizePortrait = _this.resizePortrait.bind(_this);
 	    return _this;
 	  }
 
@@ -26478,6 +26554,8 @@
 	          ratio = _props.ratio,
 	          width = _props.width,
 	          duration = _props.duration;
+	      var baseColor = colors.baseColor,
+	          barColor = colors.barColor;
 	      var _state = this.state,
 	          size = _state.size,
 	          showPercent = _state.showPercent;
@@ -26485,57 +26563,68 @@
 
 	      var baseStyle = {
 	        position: "absolute",
-	        height: (size * 0.5).toString() + "vh",
-	        fontSize: (size * 0.3).toString() + "vh",
+	        height: size * 0.5 + 'vh',
+	        fontSize: size * (ratio < 10 ? 0.24 : 0.25) + 'vh',
 	        userSelect: "none",
 	        cursor: "pointer",
 	        overflow: "hidden",
 	        display: "flex",
 	        alignItems: "center",
-	        borderRadius: (size * 0.5).toString() + "vh"
+	        borderRadius: size * 0.5 + 'vh'
+	      };
+	      var wrapper = {
+	        position: "relative",
+	        margin: size * 0.1 + 'vh',
+	        height: size * 0.5 + 'vh',
+	        width: size * 5 + 'vw'
+	      };
+	      var background = _extends({}, baseStyle, {
+	        width: "100%",
+	        backgroundColor: baseColor,
+	        color: barColor
+	      });
+	      var bar = _extends({}, baseStyle, {
+	        width: this.state.width * size * 5 / ratio + 'vw',
+	        backgroundColor: barColor,
+	        color: baseColor,
+	        transition: duration * (width / ratio) + 's linear',
+	        top: "0"
+	      });
+	      var percentage = _extends({}, baseStyle, {
+	        width: size * 0.35 + 'vh',
+	        height: size * 0.35 + 'vh',
+	        justifyContent: "center",
+	        margin: size * 0.075 + 'vh',
+	        fontSize: size * (ratio < 10 ? 0.18 : 0.14) + 'vh',
+	        backgroundColor: width !== ratio ? barColor : baseColor,
+	        color: width !== ratio ? baseColor : barColor,
+	        right: "0",
+	        opacity: showPercent ? "1" : "0",
+	        transition: 'opacity ' + duration * (width / ratio) + 's linear'
+	      });
+	      var title = {
+	        paddingLeft: size * 0.25 + 'vw',
+	        paddingRight: size * 0.25 + 'vw'
 	      };
 
 	      return {
-	        wrapper: {
-	          position: "relative",
-	          margin: (size * 0.1).toString() + "vh",
-	          height: (size * 0.5).toString() + "vh",
-	          width: (size * 5).toString() + "vw"
-	        },
-	        background: _extends({}, baseStyle, {
-	          width: "100%",
-	          backgroundColor: colors.baseColor,
-	          color: colors.barColor
-	        }),
-	        bar: _extends({}, baseStyle, {
-	          width: (this.state.width * size * 5 / ratio).toString() + "vw",
-	          backgroundColor: colors.barColor,
-	          color: colors.baseColor,
-	          transition: (duration * (width / ratio)).toString() + "s linear",
-	          top: "0"
-	        }),
-	        percentage: _extends({}, baseStyle, {
-	          width: (size * 0.35).toString() + "vh",
-	          height: (size * 0.35).toString() + "vh",
-	          justifyContent: "center",
-	          margin: (size * 0.075).toString() + "vh",
-	          fontSize: (size * (ratio < 10 ? 0.22 : 0.14)).toString() + "vh",
-	          backgroundColor: width !== ratio ? colors.barColor : colors.baseColor,
-	          color: width !== ratio ? colors.baseColor : colors.barColor,
-	          right: "0",
-	          opacity: showPercent ? "1" : "0",
-	          transition: "opacity " + (duration * (width / ratio)).toString() + "s linear"
-	        }),
-	        title: {
-	          paddingLeft: (size * 0.25).toString() + "vw",
-	          paddingRight: (size * 0.25).toString() + "vw"
-	        }
+	        wrapper: wrapper,
+	        background: background,
+	        bar: bar,
+	        percentage: percentage,
+	        title: title
 	      };
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var styles = this.getStyles();
+	      var _getStyles = this.getStyles(),
+	          wrapper = _getStyles.wrapper,
+	          background = _getStyles.background,
+	          bar = _getStyles.bar,
+	          percentage = _getStyles.percentage,
+	          title = _getStyles.title;
+
 	      var _props2 = this.props,
 	          width = _props2.width,
 	          ratio = _props2.ratio,
@@ -26544,32 +26633,32 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        { style: [styles.wrapper] },
+	        { style: wrapper },
 	        _react2.default.createElement(
 	          'div',
-	          { style: [styles.background], onClick: this.showProgress },
+	          { style: background, onClick: this.showProgress },
 	          _react2.default.createElement(
 	            'span',
-	            { style: [styles.title] },
+	            { style: title },
 	            children
 	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { style: [styles.bar], onClick: this.showProgress },
+	          { style: bar, onClick: this.showProgress },
 	          _react2.default.createElement(
 	            'span',
-	            { style: [styles.title] },
+	            { style: title },
 	            children
 	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { style: [styles.percentage], onClick: this.showProgress },
+	          { style: percentage, onClick: this.showProgress },
 	          _react2.default.createElement(
 	            'span',
 	            null,
-	            width.toString() + "/" + ratio.toString()
+	            width + '/' + ratio
 	          )
 	        )
 	      );
@@ -26638,7 +26727,7 @@
 	  function IntroPage() {
 	    _classCallCheck(this, IntroPage);
 
-	    return _possibleConstructorReturn(this, (IntroPage.__proto__ || Object.getPrototypeOf(IntroPage)).call(this));
+	    return _possibleConstructorReturn(this, (IntroPage.__proto__ || Object.getPrototypeOf(IntroPage)).apply(this, arguments));
 	  }
 
 	  _createClass(IntroPage, [{
@@ -26654,7 +26743,8 @@
 	        flexDirection: "column",
 	        textAlign: "justify",
 	        zIndex: "900",
-	        padding: "10%"
+	        padding: "5%",
+	        bottom: "2.5vh"
 	      };
 	      return {
 	        wrapper: wrapper
@@ -26663,28 +26753,27 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var style = this.getStyles();
+	      var _getStyles = this.getStyles(),
+	          wrapper = _getStyles.wrapper;
 
 	      return _react2.default.createElement(
 	        'div',
-	        { style: [style.wrapper] },
+	        { style: wrapper },
 	        _react2.default.createElement(
 	          'span',
 	          null,
 	          'Hi, I\'m Simone.',
 	          _react2.default.createElement('br', null),
-	          'I\'m a driven, hungry, junior, ~young (*uhm...*) web developer who likes to use adjectives.',
+	          'I\'m a driven, hungry, ~young (*ahem...*), junior Web Developer who likes to use adjectives.',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
-	          'When I code, I see myself as an archer. (well I really am an archer, but that\'s a story for another time).',
-	          _react2.default.createElement('br', null),
-	          'My arrows? JavaScript (and its main frameworks), PHP, CSS3, HTML5... And any other technology I can put my hands on!',
+	          'I like coding for the web. I am especially passionate about JavaScript (ReactJS, I mean WOW!), PHP, CSS3, HTML5... Well, most of the technologies on which I get my hands fascinate me!',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
-	          'If you are reading this, I thank you very much for taking an interest in me: I\'d be happy to hear from you and get all chitty-chatty about our passion for programming.',
+	          'If you are reading this, I thank you very much for taking an interest in me: I\'d be happy to hear from you and share our experiences over a good cuppa.',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
-	          'In the meanwhile, you\'ll find me doing what I love most: shooting the target!'
+	          'After all, it\'s only by learning from others that one can truly improve oneself, and I intend to apply this teaching to the letter!'
 	        )
 	      );
 	    }
@@ -26729,7 +26818,7 @@
 	  function AboutPage() {
 	    _classCallCheck(this, AboutPage);
 
-	    return _possibleConstructorReturn(this, (AboutPage.__proto__ || Object.getPrototypeOf(AboutPage)).call(this));
+	    return _possibleConstructorReturn(this, (AboutPage.__proto__ || Object.getPrototypeOf(AboutPage)).apply(this, arguments));
 	  }
 
 	  _createClass(AboutPage, [{
@@ -26745,7 +26834,8 @@
 	        flexDirection: "column",
 	        textAlign: "justify",
 	        zIndex: "900",
-	        padding: "10%"
+	        padding: "5%",
+	        bottom: "2.5vh"
 	      };
 	      return {
 	        wrapper: wrapper
@@ -26754,26 +26844,33 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var style = this.getStyles();
+	      var _getStyles = this.getStyles(),
+	          wrapper = _getStyles.wrapper;
 
 	      return _react2.default.createElement(
 	        'div',
-	        { style: [style.wrapper] },
+	        { style: wrapper },
 	        _react2.default.createElement(
 	          'span',
 	          null,
-	          'Fun facts and trivia about me!',
+	          'Ok, here\'s a few (somehow lengthy) facts about me!',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
-	          'In 2013, I graduated in Psychology in Turin, Italy. These studies allowed me to comprehend the human mind and behaviour, and gave me the tools to listen and care for other people, as well as to endure difficulties.',
+	          'When I graduated from Psychology in 2013, I would never have thought that one day I\'d be a Web Developer. Truth be told, I did not really know what I wanted to become, so I sought and found a job as a Copywriter in an advertising agency in Turin, my home town in Italy. I loved the buzz, the effort, and the atmosphere, but I ended up admitting to myself that copywriting wasn\'t my call.',
 	          _react2.default.createElement('br', null),
-	          'But I wanted more than to become a psychologist. So, to get some strong experience of a creative environment and put my ability to write to use, I joined an advertising agency as a copywriter. Amazing times, that I treasure dearly. They shaped my professional profile greatly - plus points for working with great people, too.',
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
-	          'Then, at the end of 2014, I decided to make a leap into the unknown and move to London. I was quickly hired as lettings administrator in an estate agency in Fulham, where I worked for seven months until September 2015. This was another important part of my life that made me grow on all fronts and get to know London\'s job market.',
+	          'I still love writing, occasionally, but that\'s a burden that only a handful of selected people have to pretend to appreciate.',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
-	          'Now I\'m employed at the University of London, and I finally made it into the Software development world. Who knows what the future will hold next for me?'
+	          'About one year after my graduation, I took a big leap of faith and moved to the UK. London, the big, scary metropolis that swallows everything!',
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('br', null),
+	          'Luckily, I found a job as an estate agent, which allowed me to get acquainted with the place, the people, and the different culture. It was really helpful and insightful, but it still was not what I wanted to do for the rest of my professional life.',
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('br', null),
+	          'When my contract ended, I took some time to learn coding. At first, it was just a hobby, but it quickly grew on me to the point where I was sure: I finally found my vocation! I would become a Web Developer. And it just took a few months until I was finally hired as one.',
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('br', null),
+	          'So, here I am, in a job I love, waking up happy in the morning and looking forward to each new challenge that I\'ll eventually find a way to overcome. Who knows what the future has in store for me now?'
 	        )
 	      );
 	    }
@@ -26818,7 +26915,7 @@
 	  function IntroPage() {
 	    _classCallCheck(this, IntroPage);
 
-	    return _possibleConstructorReturn(this, (IntroPage.__proto__ || Object.getPrototypeOf(IntroPage)).call(this));
+	    return _possibleConstructorReturn(this, (IntroPage.__proto__ || Object.getPrototypeOf(IntroPage)).apply(this, arguments));
 	  }
 
 	  _createClass(IntroPage, [{
@@ -26834,7 +26931,8 @@
 	        flexDirection: "column",
 	        textAlign: "justify",
 	        zIndex: "900",
-	        padding: "10%"
+	        padding: "5%",
+	        bottom: "2.5vh"
 	      };
 	      return {
 	        wrapper: wrapper
@@ -26843,11 +26941,12 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var style = this.getStyles();
+	      var _getStyles = this.getStyles(),
+	          wrapper = _getStyles.wrapper;
 
 	      return _react2.default.createElement(
 	        'div',
-	        { style: [style.wrapper] },
+	        { style: wrapper },
 	        _react2.default.createElement(
 	          'span',
 	          null,
@@ -26896,7 +26995,7 @@
 	  function ContactsPage() {
 	    _classCallCheck(this, ContactsPage);
 
-	    return _possibleConstructorReturn(this, (ContactsPage.__proto__ || Object.getPrototypeOf(ContactsPage)).call(this));
+	    return _possibleConstructorReturn(this, (ContactsPage.__proto__ || Object.getPrototypeOf(ContactsPage)).apply(this, arguments));
 	  }
 
 	  _createClass(ContactsPage, [{
@@ -26912,7 +27011,8 @@
 	        flexDirection: "column",
 	        textAlign: "left",
 	        zIndex: "900",
-	        padding: "10%"
+	        padding: "5%",
+	        bottom: "2.5vh"
 	      };
 	      return {
 	        wrapper: wrapper
@@ -26921,19 +27021,22 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var style = this.getStyles();
+	      var _getStyles = this.getStyles(),
+	          wrapper = _getStyles.wrapper;
 
 	      return _react2.default.createElement(
 	        'div',
-	        { style: [style.wrapper] },
+	        { style: wrapper },
 	        _react2.default.createElement(
 	          'span',
 	          null,
-	          'If you wish to reach me, write an email to ',
+	          'Have I sparked your interest? Great! Let\'s chat!',
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('br', null),
+	          'The fastest way to reach me is to write an email to ',
 	          _react2.default.createElement(
 	            'a',
-	            {
-	              href: 'mailto:simone.ferrero@outlook.com' },
+	            { href: 'mailto:simone.ferrero@outlook.com' },
 	            'simone.ferrero@outlook.com'
 	          ),
 	          '.',
@@ -26942,25 +27045,22 @@
 	          'For other contact details, and more info, please see ',
 	          _react2.default.createElement(
 	            'a',
-	            {
-	              target: '_blank', href: 'cvsimoneferrero.pdf' },
+	            { target: '_blank', href: 'cvsimoneferrero.pdf' },
 	            'my CV'
 	          ),
 	          '.',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
-	          'You can also check out my experience on ',
+	          'You can also check out my profile on ',
 	          _react2.default.createElement(
 	            'a',
-	            { target: '_blank',
-	              href: 'https://www.linkedin.com/in/simoneferrero/' },
+	            { target: '_blank', href: 'https://www.linkedin.com/in/simoneferrero/' },
 	            'Linkedin'
 	          ),
-	          ', or see what I\'m working on on ',
+	          ', or see what I\'m working on, on ',
 	          _react2.default.createElement(
 	            'a',
-	            { target: '_blank',
-	              href: 'https://www.github.com/simoneferrero' },
+	            { target: '_blank', href: 'https://www.github.com/simoneferrero' },
 	            'GitHub'
 	          ),
 	          '.',

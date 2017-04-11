@@ -3,10 +3,6 @@ import Radium from 'radium';
 
 class AboutPage extends React.Component {
 
-  constructor() {
-    super();
-  }
-
   getStyles() {
     const wrapper = {
       position: "absolute",
@@ -18,7 +14,8 @@ class AboutPage extends React.Component {
       flexDirection: "column",
       textAlign: "justify",
       zIndex: "900",
-      padding: "10%",
+      padding: "5%",
+      bottom: "2.5vh",
     };
     return {
       wrapper: wrapper,
@@ -26,32 +23,47 @@ class AboutPage extends React.Component {
   }
 
   render() {
-    const style = this.getStyles();
+    const { wrapper } = this.getStyles();
 
     return (
-      <div style={[style.wrapper]}>
+      <div style={wrapper}>
         <span>
-          Fun facts and trivia about me!<br />
+          Ok, here's a few (somehow lengthy) facts about me!
           <br />
-          In 2013, I graduated in Psychology in Turin, Italy.
-          These studies allowed me to comprehend the human mind and behaviour,
-          and gave me the tools to listen and care for other people, as well
-          as to endure difficulties.<br />
-          But I wanted more than to become a psychologist. So, to get some
-          strong experience of a creative environment and put my ability to
-          write to use, I joined an advertising agency as a copywriter.
-          Amazing times, that I treasure dearly. They shaped my professional
-          profile greatly - plus points for working with great people, too.<br />
           <br />
-          Then, at the end of 2014, I decided to make a leap into the unknown
-          and move to London. I was quickly hired as lettings administrator
-          in an estate agency in Fulham, where I worked for seven months
-          until September 2015. This was another important part of my life that
-          made me grow on all fronts and get to know London's job market.<br />
+          When I graduated from Psychology in 2013, I would never have thought
+          that one day I'd be a Web Developer. Truth be told, I did not really
+          know what I wanted to become, so I sought and found a job as a
+          Copywriter in an advertising agency in Turin, my home town in Italy.
+          I loved the buzz, the effort, and the atmosphere, but I ended up
+          admitting to myself that copywriting wasn't my call.
           <br />
-          Now I'm employed at the University of London, and I finally made it
-          into the Software development world. Who knows what the future will
-          hold next for me?
+          I still love writing, occasionally, but that's a burden that only a
+          handful of selected people have to pretend to appreciate.
+          <br />
+          <br />
+          About one year after my graduation, I took a big leap of faith and
+          moved to the UK. London, the big, scary metropolis that swallows
+          everything!
+          <br />
+          <br />
+          Luckily, I found a job as an estate agent, which allowed me to get
+          acquainted with the place, the people, and the different culture.
+          It was really helpful and insightful, but it still was not
+          what I wanted to do for the rest of my professional life.
+          <br />
+          <br />
+          When my contract ended, I took some time to learn coding. At
+          first, it was just a hobby, but it quickly grew on me to the point
+          where I was sure: I finally found my vocation! I would become a
+          Web Developer. And it just took a few months until I was finally
+          hired as one.
+          <br />
+          <br />
+          So, here I am, in a job I love, waking up happy in the morning
+          and looking forward to each new challenge that I'll eventually
+          find a way to overcome. Who knows what the future has in store for me
+          now?
         </span>
        </div>
     );
