@@ -28,42 +28,21 @@ class AboutPage extends React.Component {
     return (
       <div style={wrapper}>
         <span>
-          Ok, here's a few (somehow lengthy) facts about me!
+          Ok, here are some facts about me!
           <br />
           <br />
-          When I graduated from Psychology in 2013, I would never have thought
-          that one day I'd be a Web Developer. Truth be told, I did not really
-          know what I wanted to become, so I sought and found a job as a
-          Copywriter in an advertising agency in Turin, my home town in Italy.
-          I loved the buzz, the effort, and the atmosphere, but I ended up
-          admitting to myself that copywriting wasn't my call.
-          <br />
-          I still love writing, occasionally, but that's a burden that only a
-          handful of selected people have to pretend to appreciate.
+          I did not start my professional career as a Web Developer straight out of University. Truth be told, at that time I did not really know what I wanted to become. After graduating from Psychology, I was hired as a copywriter (in Italy) and estate agent (in London), before I could understand what career I really wanted.
           <br />
           <br />
-          About one year after my graduation, I took a big leap of faith and
-          moved to the UK. London, the big, scary metropolis that swallows
-          everything!
+          It took me a few months to get up to speed with programming. I already knew the basics of HTML, CSS and SQL, but learning JavaScript was a game-changer and I just fell in love with it. Books, websites, other developers' experiences... I simply could not have enough.
+          <br />
+          Then, I began to create my own projects, and developed my online portfolio. I discovered AngularJS, SASS and, more recently, ReactJS, using this knowledge on new projects or to refactor old ones...
           <br />
           <br />
-          Luckily, I found a job as an estate agent, which allowed me to get
-          acquainted with the place, the people, and the different culture.
-          It was really helpful and insightful, but it still was not
-          what I wanted to do for the rest of my professional life.
+          ... Which led me to my first job as a Graduate Developer, during which I learned OOP and back end development through C# and PHP (although my passion for the front end still burns brighter). I was also made aware of unit testing, software lifecycle and a plethora of other technical terms that I had never heard before.
           <br />
           <br />
-          When my contract ended, I took some time to learn coding. At
-          first, it was just a hobby, but it quickly grew on me to the point
-          where I was sure: I finally found my vocation! I would become a
-          Web Developer. And it just took a few months until I was finally
-          hired as one.
-          <br />
-          <br />
-          So, here I am, in a job I love, waking up happy in the morning
-          and looking forward to each new challenge that I'll eventually
-          find a way to overcome. Who knows what the future has in store for me
-          now?
+          Now, I strive to either learn or create something new every day, and am grateful that I can wake up in the morning and look forward to what challenge will be waiting for me next.
         </span>
        </div>
     );

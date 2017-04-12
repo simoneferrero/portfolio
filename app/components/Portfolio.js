@@ -7,6 +7,7 @@ import IntroPage from './IntroPage';
 import AboutPage from './AboutPage';
 import ProjectsPage from './ProjectsPage';
 import ContactsPage from './ContactsPage';
+import Ladybug from './Ladybug';
 
 export default class Portfolio extends React.Component {
 
@@ -90,10 +91,10 @@ export default class Portfolio extends React.Component {
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
       backgroundSize: "cover",
-      // fontFamily: "'Neucha', cursive",
+      fontFamily: "'Neucha', cursive",
       // fontFamily: "'Caveat', cursive",
       // fontFamily: "'Architects Daughter', cursive",
-      fontFamily: "'Coming Soon', cursive",
+      // fontFamily: "'Coming Soon', cursive",
     };
 
     return {
@@ -161,6 +162,7 @@ export default class Portfolio extends React.Component {
             })}
           </MenuFolder>
         </div>
+        <Ladybug />
       </StyleRoot>
     );
   }

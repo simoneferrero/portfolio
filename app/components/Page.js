@@ -19,10 +19,10 @@ class Page extends React.Component {
       width: "75vw",
       height: "70vh",
       position: "absolute",
-      top: "4.88vh",
+      top: "4.8vh",
       backgroundColor: "white",
       boxShadow: `${shadow}, -${shadow}`,
-      fontSize: `2.2vmin`,
+      fontSize: `2.3vmin`,
     };
     const pageTop = {
       width: "75vw",
