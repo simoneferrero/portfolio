@@ -70,6 +70,7 @@ class ProgressBar extends React.Component {
       animationDuration: "8s",
       animationTimingFunction: "cubic-bezier(0,0,0.1,1)",
       animationIterationCount: "infinite",
+      animationDelay: `${duration + 3}s`,
     };
 
     const baseStyle = {
