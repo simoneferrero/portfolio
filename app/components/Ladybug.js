@@ -18,44 +18,64 @@ class Ladybug extends React.Component {
   }
 
   moveLegs() {
-    this.setState({
-      leg1: this.state.leg1 === "20" ? "40" : "20",
-      leg2: this.state.leg2 === "10" ? "-10" : "10",
-      leg3: this.state.leg3 === "-20" ? "-40" : "-20",
-    });
+    let reps = 0;
+    const movingLegs = setInterval(() => {
+      const { leg1, leg2, leg3 } = this.state;
+      const { time } = this.props;
+      this.setState({
+        leg1: leg1 === "20" ? "40" : "20",
+        leg2: leg2 === "10" ? "-10" : "10",
+        leg3: leg3 === "-20" ? "-40" : "-20",
+      });
+
+      if (++reps === time * 2) {
+        window.clearInterval(movingLegs);
+      }
+    }, 500);
   }
 
   changePos() {
+    const { left, top, rotate } = this.state;
+    const { time } = this.props;
+    const min = Math.ceil(time);
+    const max = Math.floor(time * 3);
+    const interval = (Math.floor(Math.random() * (max - min)) + min) * 1000;
+
     this.setState({
-      left: this.state.left === "50" ? "110" : "50",
-      top: this.state.top === "-10" ? "50" : "-10",
-      rotate: this.state.rotate === "135" ? "-45" : "135",
+      left: left === "50" ? "105" : "50",
+      top: top === "-10" ? "50" : "-10",
+      rotate: rotate === "135" ? "-45" : "135",
     });
+    this.moveLegs();
+    setTimeout(this.changePos, interval);
   }
 
   componentDidMount() {
-    setInterval(this.moveLegs, 500);
-    setInterval(this.changePos, 20000)
+    const { time } = this.props;
+
+    setTimeout(this.changePos, time * 1000);
   }
 
   getStyles() {
-    const { top, right } = this.props;
-    const size = 5;
-    const unit = "vmax";
+    const { time, size } = this.props;
+    const { top, left, rotate } = this.state;
+    const unit = "vmax";//change to props when responsive website
     const shadow = `${size/50}${unit} ${size/28}${unit} ${size/30}${unit} #262626`;
     const wrapper = {
       position: "fixed",
       width: `${size}vw`,
       height: `${size}vw`,
-      // top: "10vw",
+      top: `${top}vw`,
+      left: `${left}vw`,
+      transform: `rotate(${rotate}deg)`,
+      // width: "20vw",
+      // height: "20vw",
+      // top: "10vh",
       // left: "10vw",
-      top: `${this.state.top}vw`,
-      left: `${this.state.left}vw`,
-      transition: "top 10s, left 10s",
+      transition: `top ${time}s linear, left ${time}s linear`,
       zIndex: "1000",
       display: "flex",
       justifyContent: "center",
-      transform: `rotate(${this.state.rotate}deg)`,
     };
     const body = {
       position: "absolute",
@@ -126,7 +146,6 @@ class Ladybug extends React.Component {
       top: "60%",
       borderRadius: "100%",
       transition: ".5s linear",
-      // boxShadow: `${shadow}, -${shadow}`,
     };
     const backLine = {
       position: "absolute",

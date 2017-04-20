@@ -51,9 +51,26 @@ class ProgressBar extends React.Component {
   }
 
   getStyles() {
-    const { colors, ratio, width, duration } = this.props;
+    const { colors, ratio, width, duration, animation } = this.props;
     const { baseColor, barColor } = colors;
     const { size, showPercent } = this.state;
+
+    const pulsingBar = Radium.keyframes({
+      "0%": {
+        backgroundPosition: "125% -25%",
+      },
+      to: {
+        backgroundPosition: "-25% 125%",
+      },
+    });
+    const barAnimation = {
+      backgroundImage: `linear-gradient(90deg, ${barColor} 30%, ${baseColor} 40%, ${barColor})`,
+      backgroundSize: "300%, 300%",
+      animationName: pulsingBar,
+      animationDuration: "8s",
+      animationTimingFunction: "cubic-bezier(0,0,0.1,1)",
+      animationIterationCount: "infinite",
+    };
 
     const baseStyle = {
       position: "absolute",
@@ -68,9 +85,11 @@ class ProgressBar extends React.Component {
     };
     const wrapper = {
       position: "relative",
-      margin: `${size * 0.1}vh`,
+      margin: `${size * 0.2}vh`,
       height: `${size * 0.5}vh`,
       width: `${size * 5}vw`,
+      borderRadius: `${size * 0.5}vh`,
+      overflow: "hidden",
     };
     const background = {
       ...baseStyle,
@@ -80,10 +99,10 @@ class ProgressBar extends React.Component {
     };
     const bar = {
       ...baseStyle,
+      ...animation ? barAnimation : {backgroundColor: barColor},
       width: `${this.state.width * size * 5 / ratio}vw`,
-      backgroundColor: barColor,
       color: baseColor,
-      transition: `${duration * (width / ratio)}s linear`,
+      transition: `width ${duration * (width / ratio)}s linear`,
       top: "0",
     };
     const percentage = {
@@ -141,6 +160,7 @@ ProgressBar.propTypes = {
   autoStart: React.PropTypes.number,
   ratio: React.PropTypes.number,
   duration: React.PropTypes.number,
+  animation: React.PropTypes.bool,
 };
 
 ProgressBar.defaultProps = {
@@ -154,6 +174,7 @@ ProgressBar.defaultProps = {
   autoStart: 1000,
   ratio: 5,
   duration: 1,
+  animation: true,
 }
 
 export default Radium(ProgressBar);

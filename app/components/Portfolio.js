@@ -162,7 +162,7 @@ export default class Portfolio extends React.Component {
             })}
           </MenuFolder>
         </div>
-        <Ladybug />
+        <Ladybug time={10} size={5} />
       </StyleRoot>
     );
   }
