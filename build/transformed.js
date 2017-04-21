@@ -58,7 +58,7 @@
 
 	var _Portfolio2 = _interopRequireDefault(_Portfolio);
 
-	__webpack_require__(252);
+	__webpack_require__(253);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21539,6 +21539,10 @@
 
 	var _ContactsPage2 = _interopRequireDefault(_ContactsPage);
 
+	var _Ladybug = __webpack_require__(252);
+
+	var _Ladybug2 = _interopRequireDefault(_Ladybug);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21641,10 +21645,7 @@
 	        backgroundRepeat: "no-repeat",
 	        backgroundPosition: "center",
 	        backgroundSize: "cover",
-	        // fontFamily: "'Neucha', cursive",
-	        // fontFamily: "'Caveat', cursive",
-	        // fontFamily: "'Architects Daughter', cursive",
-	        fontFamily: "'Coming Soon', cursive"
+	        fontFamily: "'Neucha', cursive"
 	      };
 
 	      return {
@@ -21732,7 +21733,8 @@
 	              );
 	            })
 	          )
-	        )
+	        ),
+	        _react2.default.createElement(_Ladybug2.default, { time: 10, size: 5 })
 	      );
 	    }
 	  }]);
@@ -26213,17 +26215,15 @@
 	        width: "75vw",
 	        height: "70vh",
 	        position: "absolute",
-	        top: "4.88vh",
+	        top: "5vh",
 	        backgroundColor: "white",
 	        boxShadow: shadow + ', -' + shadow,
-	        fontSize: '2.2vmin'
+	        fontSize: '2.3vmin'
 	      };
 	      var pageTop = {
 	        width: "75vw",
-	        height: "0",
+	        height: "6vh",
 	        position: "absolute",
-	        borderBottom: "5vh solid white",
-	        borderLeft: "5vh solid transparent",
 	        boxShadow: shadow
 	      };
 	      var slantedCorner = {
@@ -26553,13 +26553,32 @@
 	          colors = _props.colors,
 	          ratio = _props.ratio,
 	          width = _props.width,
-	          duration = _props.duration;
+	          duration = _props.duration,
+	          animation = _props.animation;
 	      var baseColor = colors.baseColor,
 	          barColor = colors.barColor;
 	      var _state = this.state,
 	          size = _state.size,
 	          showPercent = _state.showPercent;
 
+
+	      var pulsingBar = _radium2.default.keyframes({
+	        "0%": {
+	          backgroundPosition: "125% -25%"
+	        },
+	        to: {
+	          backgroundPosition: "-25% 125%"
+	        }
+	      });
+	      var barAnimation = {
+	        backgroundImage: 'linear-gradient(90deg, ' + barColor + ' 30%, ' + baseColor + ' 40%, ' + barColor + ')',
+	        backgroundSize: "300%, 300%",
+	        animationName: pulsingBar,
+	        animationDuration: "8s",
+	        animationTimingFunction: "cubic-bezier(0,0,0.1,1)",
+	        animationIterationCount: "infinite",
+	        animationDelay: duration + 3 + 's'
+	      };
 
 	      var baseStyle = {
 	        position: "absolute",
@@ -26574,20 +26593,21 @@
 	      };
 	      var wrapper = {
 	        position: "relative",
-	        margin: size * 0.1 + 'vh',
+	        margin: size * 0.2 + 'vh',
 	        height: size * 0.5 + 'vh',
-	        width: size * 5 + 'vw'
+	        width: size * 5 + 'vw',
+	        borderRadius: size * 0.5 + 'vh',
+	        overflow: "hidden"
 	      };
 	      var background = _extends({}, baseStyle, {
 	        width: "100%",
 	        backgroundColor: baseColor,
 	        color: barColor
 	      });
-	      var bar = _extends({}, baseStyle, {
+	      var bar = _extends({}, baseStyle, animation ? barAnimation : { backgroundColor: barColor }, {
 	        width: this.state.width * size * 5 / ratio + 'vw',
-	        backgroundColor: barColor,
 	        color: baseColor,
-	        transition: duration * (width / ratio) + 's linear',
+	        transition: 'width ' + duration * (width / ratio) + 's linear',
 	        top: "0"
 	      });
 	      var percentage = _extends({}, baseStyle, {
@@ -26675,7 +26695,8 @@
 	  children: _react2.default.PropTypes.string,
 	  autoStart: _react2.default.PropTypes.number,
 	  ratio: _react2.default.PropTypes.number,
-	  duration: _react2.default.PropTypes.number
+	  duration: _react2.default.PropTypes.number,
+	  animation: _react2.default.PropTypes.bool
 	};
 
 	ProgressBar.defaultProps = {
@@ -26688,7 +26709,8 @@
 	  children: "Language",
 	  autoStart: 1000,
 	  ratio: 5,
-	  duration: 1
+	  duration: 1,
+	  animation: true
 	};
 
 	exports.default = (0, _radium2.default)(ProgressBar);
@@ -26853,24 +26875,21 @@
 	        _react2.default.createElement(
 	          'span',
 	          null,
-	          'Ok, here\'s a few (somehow lengthy) facts about me!',
+	          'Ok, here are some facts about me!',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
-	          'When I graduated from Psychology in 2013, I would never have thought that one day I\'d be a Web Developer. Truth be told, I did not really know what I wanted to become, so I sought and found a job as a Copywriter in an advertising agency in Turin, my home town in Italy. I loved the buzz, the effort, and the atmosphere, but I ended up admitting to myself that copywriting wasn\'t my call.',
-	          _react2.default.createElement('br', null),
-	          'I still love writing, occasionally, but that\'s a burden that only a handful of selected people have to pretend to appreciate.',
+	          'I did not start my professional career as a Web Developer straight out of University. Truth be told, at that time I did not really know what I wanted to become. After graduating from Psychology, I was hired as a copywriter (in Italy) and estate agent (in London), before I could understand what career I really wanted.',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
-	          'About one year after my graduation, I took a big leap of faith and moved to the UK. London, the big, scary metropolis that swallows everything!',
+	          'It took me a few months to get up to speed with programming. I already knew the basics of HTML, CSS and SQL, but learning JavaScript was a game-changer and I just fell in love with it. Books, websites, other developers\' experiences... I simply could not have enough.',
+	          _react2.default.createElement('br', null),
+	          'Then, I began to create my own projects, and developed my online portfolio. I discovered AngularJS, SASS and, more recently, ReactJS, using this knowledge on new projects or to refactor old ones...',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
-	          'Luckily, I found a job as an estate agent, which allowed me to get acquainted with the place, the people, and the different culture. It was really helpful and insightful, but it still was not what I wanted to do for the rest of my professional life.',
+	          '... Which led me to my first job as a Graduate Developer, during which I learned OOP and back end development through C# and PHP (although my passion for the front end still burns brighter). I was also made aware of unit testing, software lifecycle and a plethora of other technical terms that I had never heard before.',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement('br', null),
-	          'When my contract ended, I took some time to learn coding. At first, it was just a hobby, but it quickly grew on me to the point where I was sure: I finally found my vocation! I would become a Web Developer. And it just took a few months until I was finally hired as one.',
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
-	          'So, here I am, in a job I love, waking up happy in the morning and looking forward to each new challenge that I\'ll eventually find a way to overcome. Who knows what the future has in store for me now?'
+	          'Now, I strive to either learn or create something new every day, and am grateful that I can wake up in the morning and look forward to what challenge will be waiting for me next.'
 	        )
 	      );
 	    }
@@ -27079,6 +27098,307 @@
 
 /***/ },
 /* 252 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _radium = __webpack_require__(179);
+
+	var _radium2 = _interopRequireDefault(_radium);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Ladybug = function (_React$Component) {
+	  _inherits(Ladybug, _React$Component);
+
+	  function Ladybug(props) {
+	    _classCallCheck(this, Ladybug);
+
+	    var _this = _possibleConstructorReturn(this, (Ladybug.__proto__ || Object.getPrototypeOf(Ladybug)).call(this, props));
+
+	    _this.state = {
+	      leg1: "20",
+	      leg2: "10",
+	      leg3: "-40",
+	      left: "50",
+	      top: "-10",
+	      rotate: "45"
+	    };
+	    _this.moveLegs = _this.moveLegs.bind(_this);
+	    _this.changePos = _this.changePos.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(Ladybug, [{
+	    key: 'moveLegs',
+	    value: function moveLegs() {
+	      var _this2 = this;
+
+	      var reps = 0;
+	      var movingLegs = setInterval(function () {
+	        var _state = _this2.state,
+	            leg1 = _state.leg1,
+	            leg2 = _state.leg2,
+	            leg3 = _state.leg3;
+	        var time = _this2.props.time;
+
+	        _this2.setState({
+	          leg1: leg1 === "20" ? "40" : "20",
+	          leg2: leg2 === "10" ? "-10" : "10",
+	          leg3: leg3 === "-20" ? "-40" : "-20"
+	        });
+
+	        if (++reps === time * 2) {
+	          window.clearInterval(movingLegs);
+	        }
+	      }, 500);
+	    }
+	  }, {
+	    key: 'changePos',
+	    value: function changePos() {
+	      var _state2 = this.state,
+	          left = _state2.left,
+	          top = _state2.top,
+	          rotate = _state2.rotate;
+	      var time = this.props.time;
+
+	      var min = Math.ceil(time);
+	      var max = Math.floor(time * 3);
+	      var interval = (Math.floor(Math.random() * (max - min)) + min) * 1000;
+
+	      this.setState({
+	        left: left === "50" ? "105" : "50",
+	        top: top === "-10" ? "50" : "-10",
+	        rotate: rotate === "135" ? "-45" : "135"
+	      });
+	      this.moveLegs();
+	      setTimeout(this.changePos, interval);
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var time = this.props.time;
+
+
+	      setTimeout(this.changePos, time * 1000);
+	    }
+	  }, {
+	    key: 'getStyles',
+	    value: function getStyles() {
+	      var _props = this.props,
+	          time = _props.time,
+	          size = _props.size;
+	      var _state3 = this.state,
+	          top = _state3.top,
+	          left = _state3.left,
+	          rotate = _state3.rotate;
+
+	      var unit = "vmax"; //change to props when responsive website
+	      var shadow = '' + size / 50 + unit + ' ' + size / 28 + unit + ' ' + size / 30 + unit + ' #262626';
+	      var wrapper = {
+	        position: "fixed",
+	        width: size + 'vw',
+	        height: size + 'vw',
+	        top: top + 'vw',
+	        left: left + 'vw',
+	        transform: 'rotate(' + rotate + 'deg)',
+	        // width: "20vw",
+	        // height: "20vw",
+	        // top: "10vh",
+	        // left: "10vw",
+	        transition: 'top ' + time + 's linear, left ' + time + 's linear',
+	        zIndex: "1000",
+	        display: "flex",
+	        justifyContent: "center"
+	      };
+	      var body = {
+	        position: "absolute",
+	        width: "70%",
+	        height: "80%",
+	        borderRadius: "100%",
+	        backgroundColor: "#b30000",
+	        bottom: "0",
+	        boxShadow: shadow + ', -' + shadow
+	      };
+	      var neckTop = {
+	        position: "absolute",
+	        width: "50%",
+	        height: "20%",
+	        borderRadius: "50% 50% 0 0/ 100% 100% 0 0",
+	        backgroundColor: "black",
+	        top: "10%",
+	        boxShadow: shadow + ', -' + shadow
+	      };
+	      var neckBottom = {
+	        position: "absolute",
+	        width: "50%",
+	        height: "5%",
+	        borderRadius: "0 0 50% 50%/ 0 0 100% 100%",
+	        backgroundColor: "black",
+	        top: "30%"
+	      };
+	      var head = {
+	        position: "absolute",
+	        width: "20%",
+	        height: "5%",
+	        borderRadius: "50% 50% 0 0/ 100% 100% 0 0",
+	        backgroundColor: "black",
+	        top: "7%",
+	        boxShadow: shadow + ', -' + shadow
+	      };
+	      var neckDot = {
+	        position: "absolute",
+	        width: "15%",
+	        height: "8%",
+	        borderRadius: "100%",
+	        backgroundColor: "white",
+	        top: "14%"
+	      };
+	      var eye = {
+	        position: "absolute",
+	        width: "2%",
+	        height: "2%",
+	        backgroundColor: "white",
+	        top: "9%",
+	        borderRadius: "100%"
+	      };
+	      var antennas = {
+	        position: "absolute",
+	        borderStyle: "solid",
+	        borderRadius: "70%",
+	        width: "15%",
+	        height: "15%",
+	        borderWidth: size * 1.5 / 100 + 'vw',
+	        borderColor: "transparent black transparent black",
+	        boxShadow: shadow + ', -' + shadow
+	      };
+	      var leg = {
+	        position: "absolute",
+	        width: "90%",
+	        height: "2%",
+	        backgroundColor: "black",
+	        top: "60%",
+	        borderRadius: "100%",
+	        transition: ".5s linear"
+	      };
+	      var backLine = {
+	        position: "absolute",
+	        width: "1%",
+	        height: "80%",
+	        backgroundColor: "black",
+	        bottom: "0"
+	      };
+	      var backDot = {
+	        borderRadius: "100%",
+	        backgroundColor: "black",
+	        position: "absolute"
+	      };
+	      var leftDot = function leftDot(width, height, left, top) {
+	        return _extends({}, backDot, {
+	          width: width,
+	          height: height,
+	          left: left,
+	          top: top
+	        });
+	      };
+	      var righttDot = function righttDot(width, height, right, top) {
+	        return _extends({}, backDot, {
+	          width: width,
+	          height: height,
+	          right: right,
+	          top: top
+	        });
+	      };
+
+	      return {
+	        wrapper: wrapper,
+	        leg1: _extends({}, leg, {
+	          transform: 'rotate(' + this.state.leg1 + 'deg)'
+	        }),
+	        leg2: _extends({}, leg, {
+	          transform: 'rotate(' + this.state.leg2 + 'deg)'
+	        }),
+	        leg3: _extends({}, leg, {
+	          transform: 'rotate(' + this.state.leg3 + 'deg)'
+	        }),
+	        body: body,
+	        backLine: backLine,
+	        antennas: antennas,
+	        neckTop: neckTop,
+	        neckBottom: neckBottom,
+	        head: head,
+	        lNeckDot: _extends({}, neckDot, {
+	          transform: "rotate(150deg)",
+	          left: "30%"
+	        }),
+	        rNeckDot: _extends({}, neckDot, {
+	          transform: "rotate(-150deg)",
+	          right: "30%"
+	        }),
+	        lEye: _extends({}, eye, {
+	          left: "43%"
+	        }),
+	        rEye: _extends({}, eye, {
+	          right: "43%"
+	        }),
+	        dot1: _extends({}, leftDot("20%", "16%", "25%", "35%")),
+	        dot2: _extends({}, leftDot("8%", "8%", "20%", "57%")),
+	        dot3: _extends({}, leftDot("20%", "19%", "25%", "70%")),
+	        dot4: _extends({}, righttDot("20%", "16%", "25%", "35%")),
+	        dot5: _extends({}, righttDot("8%", "8%", "20%", "57%")),
+	        dot6: _extends({}, righttDot("20%", "19%", "25%", "70%")),
+	        dot7: _extends({}, backDot, {
+	          width: "15%",
+	          height: "15%",
+	          top: "47%"
+	        })
+	      };
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var styles = this.getStyles();
+	      var layout = [];
+
+	      for (var style in styles) {
+	        if (style !== 'wrapper') {
+	          layout.push(_react2.default.createElement('div', { style: styles[style], key: style }));
+	        }
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { style: styles.wrapper },
+	        layout
+	      );
+	    }
+	  }]);
+
+	  return Ladybug;
+	}(_react2.default.Component);
+
+	exports.default = (0, _radium2.default)(Ladybug);
+
+/***/ },
+/* 253 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

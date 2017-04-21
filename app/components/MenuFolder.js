@@ -5,25 +5,31 @@ import MenuFolderLabel from './MenuFolderLabel';
 class MenuFolder extends React.Component {
 
   getStyles() {
-    const { color, radius, shadow, unit } = this.props;
+    const { color, radius, shadow, unit, portrait } = this.props;
 
-    const menuFolder = {
-      position: "fixed",
+    const styleLandscape = {
       bottom: "0",
       left: "0",
-      width: "100vw",//this should be vmax
+      width: "100vw",
+      height: "10vw",
+      maxHeight: "18vh",
+      transform: "rotate(0deg)",
+    };
+    const stylePortrait = {
+      bottom: "44vh",
+      left: "-46vh",
+      width: "100vh",
+      height: "10vh",
+      maxHeight: "18vw",
+      transform: "rotate(90deg)",
+    };
+
+    const menuFolder = {
+      ...portrait ? stylePortrait : styleLandscape,
+      position: "fixed",
       display: "flex",
       justifyContent: "center",
-      transform: "",
-      maxHeight: "18vh",//18vw in portrait
-      height: "10vmax",
-      /*for portrait:
-        -invert height/width
-        -transform: rotate(90deg)
-        -bottom: 44vmax
-        -left: -44vmax //or more if want to hide folder
-      */
-    }
+    };
     const menu = {
       position: "relative",
       display: "flex",

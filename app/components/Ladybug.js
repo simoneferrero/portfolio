@@ -37,7 +37,7 @@ class Ladybug extends React.Component {
   changePos() {
     const { left, top, rotate } = this.state;
     const { time } = this.props;
-    const min = Math.ceil(time);
+    const min = Math.ceil(time + 1);
     const max = Math.floor(time * 3);
     const interval = (Math.floor(Math.random() * (max - min)) + min) * 1000;
 

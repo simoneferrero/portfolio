@@ -16,8 +16,22 @@ export default class Portfolio extends React.Component {
     this.state = {
       main: "home",
       color: "#e2a31d",
+      portrait: this.resizePortrait(),
     }
     this.togglePage = this.togglePage.bind(this);
+    this.resizePortrait = this.resizePortrait.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", () => this.setState({
+      portrait: this.resizePortrait(),
+    }));
+  }
+
+  resizePortrait() {
+    const mq = window.matchMedia("only screen and (orientation: portrait)");
+
+    return mq.matches;
   }
 
   getElements() {
@@ -40,7 +54,7 @@ export default class Portfolio extends React.Component {
       projects: {
         color: "#de002f",
         zIndex: "460",
-        contents: <ProjectsPage />,
+        contents: <ProjectsPage portrait={this.state.portrait} />,
       },
       contacts: {
         color: "#6c7db7",
@@ -52,17 +66,6 @@ export default class Portfolio extends React.Component {
     return elements;
   }
 
-  // togglePage(name) {
-  //   const pages = this.getElements();
-  //   const { main } = this.state;
-  //   const mainPage = main === name ? "home" : name;
-  //   const color = pages[mainPage].color;
-  //
-  //   this.setState({
-  //     main: mainPage,
-  //     color: color,
-  //   });
-  // }
   togglePage(name, color) {
     const pages = this.getElements();
     const { main } = this.state;
@@ -109,7 +112,7 @@ export default class Portfolio extends React.Component {
   render() {
     const { size, radius, unit, shadow, portfolio } = this.getStyles();
     const elements = this.getElements();
-    const { main, color } = this.state;
+    const { main, color, portrait } = this.state;
     const onClick = this.togglePage;
 
     const labels = [];
@@ -121,6 +124,16 @@ export default class Portfolio extends React.Component {
         name: element,
         zIndex: main === element ? "500" : zIndex,
       };
+      const landscapeOffset = {
+        offSet: main === element ? 20 : -71,
+      };
+      const portraitOffset = {
+        offSet: main === element ? 0 : -30,//calculate difference between height and width and substract it from the bottom offset
+        //this is calculating according to height, which is bigger as the view is slimmer,
+        //it also needs to be calculated in vh instead of vw, but the problem is that width is in vw
+        //possible solution to set max width in vw so it doesn't get too big?
+        //other possible solution: include all pages in outer div and not turn it, it will retain values and offset
+      };
 
       labels.push({
         ...common,
@@ -129,8 +142,8 @@ export default class Portfolio extends React.Component {
 
       pages.push({
         ...common,
-        offSet: main === element ? 20 : -71,//vh must be unit
         contents: contents,
+        ... portrait ? portraitOffset : landscapeOffset,
       });
     }
 
@@ -145,6 +158,7 @@ export default class Portfolio extends React.Component {
             unit={unit}
             radius={radius}
             shadow={shadow}
+            portrait={portrait}
             onClick={onClick}>
             {pages.map(page => {
               const { zIndex, offSet, name, contents } = page;
@@ -155,6 +169,7 @@ export default class Portfolio extends React.Component {
                   shadow={shadow}
                   size={size}
                   unit={unit}
+                  portrait={portrait}
                   key={name}>
                   {contents}
                 </Page>

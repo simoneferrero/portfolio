@@ -82,11 +82,11 @@ class HomePage extends React.Component {
     };
 
     return {
-      wrapper: wrapper,
-      headers: headers,
-      title: title,
-      subTitle: subTitle,
-      skills: skills
+      wrapper,
+      headers,
+      title,
+      subTitle,
+      skills
     }
   }
 

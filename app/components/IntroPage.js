@@ -18,7 +18,7 @@ class IntroPage extends React.Component {
       bottom: "2.5vh",
     };
     return {
-      wrapper: wrapper,
+      wrapper,
     }
   }
 
