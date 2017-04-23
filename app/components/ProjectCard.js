@@ -21,10 +21,12 @@ class ProjectCard extends React.Component {
 
   getStyles() {
     const shadow = `0.3vmin 0.6vmin 1vmin #262626`;
+    const size = this.props.portrait ? "20vh" : "14vw";
+    // const size = `20${this.props.portrait ? "vw" : "vh"}`;
 
     const itemWrap = {
-      height: "18vh",
-      width: this.props.portrait ? "48%" : "23%",
+      height: size, //"18vh",
+      width: size, //this.props.portrait ? "48%" : "23%",
       cursor: "pointer",
       fontSize: "2.5vh",
       fontWeight: "600",
@@ -33,10 +35,13 @@ class ProjectCard extends React.Component {
       textDecoration: "none",
       display: "flex",
       justifyContent: "center",
+      marginLeft: this.props.portrait ? "0" : "5%",
+      marginRight: this.props.portrait ? "0" : "5%",
     };
     const face = {
       display: "flex",
       justifyContent: "center",
+      alignItems: "center",
       height: "100%",
       width: "100%",
       padding: "5%",
@@ -58,23 +63,28 @@ class ProjectCard extends React.Component {
       whiteSpace: "pre-line",
       alignItems: "center",
       fontSize: "2vh",
-    }
+    };
     const image = {
       position: "absolute",
-      height: "58%",
-      width: "auto",
-      bottom: "2%",
+      height: "auto",
+      width: "100%",
+    };
+    const title = {
+      fontSize: "3vh",
+      backgroundColor: "rgba(255, 255, 255, 0.8)",
+      zIndex: "100",
     };
     return {
       itemWrap,
       front,
       back,
       image,
+      title,
     };
   }
 
   render() {
-    const { itemWrap, front, back, image } = this.getStyles();
+    const { itemWrap, front, back, image, title } = this.getStyles();
     const { name, icon, link, description } = this.props.project;
 
     return (
@@ -85,8 +95,8 @@ class ProjectCard extends React.Component {
         onMouseEnter={this.flipCard}
         onMouseLeave={this.flipCard}>
         <div style={front}>
-          <div>{name}</div>
           <img style={image} src={icon} alt={name} />
+          <div style={title}>{name}</div>
         </div>
         <div style={back}>
           <span>{description}</span>

@@ -7,7 +7,7 @@ class ProjectsPage extends React.Component {
   getStyles() {
     const wrapper = {
       position: "absolute",
-      height: "100%",
+      height: "65vh",
       width: "100%",
       display: "flex",
       alignItems: "center",
@@ -15,8 +15,9 @@ class ProjectsPage extends React.Component {
       flexWrap: "wrap",
       textAlign: "center",
       zIndex: "900",
-      padding: "5%",
-      bottom: "2.5vh",
+      bottom: "5vh",
+      paddingLeft: "3%",
+      paddingRight: "3%",
     };
     return {
       wrapper,
