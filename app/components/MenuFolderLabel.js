@@ -4,7 +4,7 @@ import Radium from 'radium';
 class MenuFolderLabel extends React.Component {
 
   getStyles() {
-    const { zIndex, color, name, size, unit, radius, shadow } = this.props;
+    const { zIndex, color, size, unit, radius, shadow } = this.props;
 
     const tab = {
       zIndex,
@@ -21,6 +21,7 @@ class MenuFolderLabel extends React.Component {
       boxShadow: `${shadow}, -${shadow}`,
       cursor: "pointer",
     };
+
     const label = {
       backgroundColor: "#262626",
       color: "#f2f2f2",
@@ -31,7 +32,6 @@ class MenuFolderLabel extends React.Component {
       userSelect: "none",
       marginTop: "8%",
       paddingTop: `${size / 30}${unit}`,
-      // paddingBottom: `${size / 50}${unit}`,
       paddingLeft: `${size / 20}${unit}`,
       paddingRight: `${size / 20}${unit}`,
     };
@@ -44,10 +44,9 @@ class MenuFolderLabel extends React.Component {
 
   render() {
     const { tab, label } = this.getStyles();
-    const { name, color, page, onClick } = this.props;
+    const { name, color, onClick } = this.props;
 
     return (
-      // <div style={[style.tab]} onClick={() => onClick(name)}>
       <div style={tab} onClick={() => onClick(name, color)}>
         <span style={label}>{name.toUpperCase()}</span>
       </div>

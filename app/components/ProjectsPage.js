@@ -19,6 +19,7 @@ class ProjectsPage extends React.Component {
       paddingLeft: "3%",
       paddingRight: "3%",
     };
+
     return {
       wrapper,
     };
@@ -39,7 +40,7 @@ class ProjectsPage extends React.Component {
       {
         id: "blackjack",
         name: "Super Awesome Blackjack",
-        icon: "img/blackjack.png",//resize/reduce icons
+        icon: "img/blackjack.png",
         link: "blackjack/index.html",
         description: `(Work in Progress)
           Test your luck in this full Blackjack game!
@@ -52,6 +53,15 @@ class ProjectsPage extends React.Component {
         icon: "img/easyrecipes.png",
         link: "easyrecipes/index.html",
         description: `Get the perfect dosage for your recipes.
+
+          Technologies: AngularJS 1, jQuery, SASS`,
+      },
+      {
+        id: "Portfolio2016",
+        name: "Portfolio 2016",
+        icon: "img/decisionmaker.png",
+        link: "portfolio2016/index.html",
+        description: `This is how my portfolio looked in 2016.
 
           Technologies: AngularJS 1, jQuery, SASS`,
       },
@@ -87,13 +97,15 @@ class ProjectsPage extends React.Component {
       <div style={wrapper}>
         {projects.map(project => {
             return (
-              <ProjectCard key={project.id} project={project} portrait={portrait}/>
+              <ProjectCard
+                project={project}
+                portrait={portrait}
+                key={project.id} />
             );
           })}
       </div>
     );
   }
-
 }
 
 export default Radium(ProjectsPage);

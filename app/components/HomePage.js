@@ -64,19 +64,23 @@ class HomePage extends React.Component {
       zIndex: "900",
       bottom: "2.5vh",
     };
+
     const headers = {
       width: "95%",
       marginTop: "3vh",
       fontFamily: "'Special Elite', cursive",
     };
+
     const title = {
       fontWeight: "700",
       fontSize: "14vmin",
     };
+
     const subTitle = {
       fontWeight: "500",
       fontSize: "5vmin",
     };
+
     const skills = {
       marginBottom: "3vh",
     };
@@ -87,7 +91,7 @@ class HomePage extends React.Component {
       title,
       subTitle,
       skills
-    }
+    };
   }
 
   render() {
@@ -103,18 +107,19 @@ class HomePage extends React.Component {
         <div style={skills}>
           {languages.map(language => {
             const { colors, width, name } = language;
-            return (<ProgressBar
-                      colors={colors}
-                      width={width}
-                      size={10}
-                      key={name}
-                      >{name}</ProgressBar>);
+            return (
+              <ProgressBar
+                colors={colors}
+                width={width}
+                size={10}
+                key={name}>
+                  {name}
+              </ProgressBar>);
           })}
         </div>
       </div>
     );
   }
-
 }
 
 export default Radium(HomePage);

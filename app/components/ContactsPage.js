@@ -17,17 +17,23 @@ class ContactsPage extends React.Component {
       padding: "5%",
       bottom: "2.5vh",
     };
+
+    const span = {
+      width: "100%",
+    };
+
     return {
       wrapper,
-    }
+      span,
+    };
   }
 
   render() {
-    const { wrapper } = this.getStyles();
+    const { wrapper, span } = this.getStyles();
 
     return (
       <div style={wrapper}>
-        <span>
+        <span style={span}>
           Have I sparked your interest? Great! Let's chat!
           <br />
           <br />
@@ -46,7 +52,6 @@ class ContactsPage extends React.Component {
       </div>
     );
   }
-
 }
 
 export default Radium(ContactsPage);

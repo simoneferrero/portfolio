@@ -20,24 +20,28 @@ class ProjectCard extends React.Component {
   }
 
   getStyles() {
-    const shadow = `0.3vmin 0.6vmin 1vmin #262626`;
-    const size = this.props.portrait ? "20vh" : "14vw";
-    // const size = `20${this.props.portrait ? "vw" : "vh"}`;
+    const { portrait } = this.props;
+    const shadow = "0.3vmin 0.6vmin 1vmin #262626";
+
+    let textShadow = "";
+
+    for (let i = 1; i <= 4; i++) {
+      textShadow += `${i % 2 === 0 ? "-" : ""}0.4vmin ${i > 2 ? "-" : ""}0.4vmin 0.6vmin white${i !== 4 ? ", " : ""}`;
+    }
 
     const itemWrap = {
-      height: size, //"18vh",
-      width: size, //this.props.portrait ? "48%" : "23%",
+      height: portrait ? "30%" : "45%",
+      width: portrait ? "45%" : "30%",
       cursor: "pointer",
-      fontSize: "2.5vh",
       fontWeight: "600",
       position: "relative",
       color: "#262626",
       textDecoration: "none",
       display: "flex",
       justifyContent: "center",
-      marginLeft: this.props.portrait ? "0" : "5%",
-      marginRight: this.props.portrait ? "0" : "5%",
+      userSelect: "none",
     };
+
     const face = {
       display: "flex",
       justifyContent: "center",
@@ -52,11 +56,16 @@ class ProjectCard extends React.Component {
       boxShadow: `${shadow}, -${shadow}`,
       backfaceVisibility: "hidden",
       position: "absolute",
+      overflow: "hidden",
+      left: "50%",
+      marginLeft: "-50%",
     };
+
     const front = {
       ...face,
       transform: `rotateY(${this.state.front ? 0 : 180}deg)`,
     };
+
     const back = {
       ...face,
       transform: `rotateY(${this.state.front ? 180 : 0}deg)`,
@@ -64,15 +73,21 @@ class ProjectCard extends React.Component {
       alignItems: "center",
       fontSize: "2vh",
     };
+
     const image = {
       position: "absolute",
       height: "auto",
       width: "100%",
+      left: "50%",
+      marginLeft: "-50%",
     };
+
     const title = {
-      fontSize: "3vh",
-      backgroundColor: "rgba(255, 255, 255, 0.8)",
+      fontSize: `3.2${portrait ? "vh" : "vw"}`,
       zIndex: "100",
+      transform: "rotate(-30deg)",
+      fontFamily: "'Special Elite', cursive",
+      textShadow: textShadow,
     };
     return {
       itemWrap,

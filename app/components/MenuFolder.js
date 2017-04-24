@@ -15,6 +15,7 @@ class MenuFolder extends React.Component {
       maxHeight: "18vh",
       transform: "rotate(0deg)",
     };
+
     const stylePortrait = {
       bottom: "44vh",
       left: "-46vh",
@@ -30,6 +31,7 @@ class MenuFolder extends React.Component {
       display: "flex",
       justifyContent: "center",
     };
+
     const menu = {
       position: "relative",
       display: "flex",
@@ -39,10 +41,13 @@ class MenuFolder extends React.Component {
       width: "80%",
       top: "0",
     };
+
     const cover = {
       position: "absolute",
       width: "90%",
       height: "45%",
+      left: "50%",
+      marginLeft: "-45%",
       backgroundColor: color,
       zIndex: "900",
       borderTopLeftRadius: `${radius}${unit}`,
@@ -55,21 +60,20 @@ class MenuFolder extends React.Component {
       menuFolder,
       menu,
       cover,
-    }
+    };
   }
 
   render() {
     const { menuFolder, menu, cover } = this.getStyles();
     const {
       labels,
-      main,
-      color,
       size,
       unit,
       radius,
       shadow,
       children,
-      onClick } = this.props;
+      onClick
+    } = this.props;
 
     return (
       <div style={menuFolder}>
@@ -77,15 +81,15 @@ class MenuFolder extends React.Component {
         <div style={menu} id="menu">{labels.map(label => {
           return (
             <MenuFolderLabel
-                          name={label.name}
-                          color={label.color}
-                          zIndex={label.zIndex}
-                          size={size}
-                          unit={unit}
-                          radius={radius}
-                          shadow={shadow}
-                          onClick={onClick}
-                          key={label.name} />
+              name={label.name}
+              color={label.color}
+              zIndex={label.zIndex}
+              size={size}
+              unit={unit}
+              radius={radius}
+              shadow={shadow}
+              onClick={onClick}
+              key={label.name} />
           );
         })}</div>
         <div style={cover}></div>

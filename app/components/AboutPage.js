@@ -17,17 +17,23 @@ class AboutPage extends React.Component {
       padding: "5%",
       bottom: "2.5vh",
     };
+
+    const span = {
+      width: "100%",
+    };
+
     return {
       wrapper,
-    }
+      span,
+    };
   }
 
   render() {
-    const { wrapper } = this.getStyles();
+    const { wrapper, span } = this.getStyles();
 
     return (
       <div style={wrapper}>
-        <span>
+        <span style={span}>
           Ok, here are some facts about me!
           <br />
           <br />
@@ -47,7 +53,6 @@ class AboutPage extends React.Component {
        </div>
     );
   }
-
 }
 
 export default Radium(AboutPage);

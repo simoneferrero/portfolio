@@ -18,14 +18,13 @@ class ProgressBar extends React.Component {
 
   componentDidMount() {
     const { autoStart } = this.props;
+
     if (autoStart >= 0) {
       this.setState({
         timeout: setTimeout(() => this.showProgress(), autoStart),
       });
-
     }
 
-    const mq = window.matchMedia("only screen and (orientation: portrait)");
     window.addEventListener("resize", () => this.setState({
       size: this.resizePortrait(),
     }));
@@ -37,6 +36,7 @@ class ProgressBar extends React.Component {
 
   showProgress() {
     const width = this.state.width === this.props.width ? 0 : this.props.width;
+
     this.setState({
       width,
       showPercent: !this.state.showPercent,
@@ -63,6 +63,7 @@ class ProgressBar extends React.Component {
         backgroundPosition: "-25% 125%",
       },
     });
+
     const barAnimation = {
       backgroundImage: `linear-gradient(90deg, ${barColor} 30%, ${baseColor} 40%, ${barColor})`,
       backgroundSize: "300%, 300%",
@@ -84,6 +85,7 @@ class ProgressBar extends React.Component {
       alignItems: "center",
       borderRadius: `${size * 0.5}vh`,
     };
+
     const wrapper = {
       position: "relative",
       margin: `${size * 0.2}vh`,
@@ -92,12 +94,14 @@ class ProgressBar extends React.Component {
       borderRadius: `${size * 0.5}vh`,
       overflow: "hidden",
     };
+
     const background = {
       ...baseStyle,
       width: "100%",
       backgroundColor: baseColor,
       color: barColor,
     };
+
     const bar = {
       ...baseStyle,
       ...animation ? barAnimation : {backgroundColor: barColor},
@@ -106,6 +110,7 @@ class ProgressBar extends React.Component {
       transition: `width ${duration * (width / ratio)}s linear`,
       top: "0",
     };
+
     const percentage = {
       ...baseStyle,
       width: `${size * 0.35}vh`,
@@ -119,6 +124,7 @@ class ProgressBar extends React.Component {
       opacity: showPercent ? "1" : "0",
       transition: `opacity ${duration * (width / ratio)}s linear`,
     };
+
     const title = {
       paddingLeft: `${size * 0.25}vw`,
       paddingRight: `${size * 0.25}vw`,
@@ -130,7 +136,7 @@ class ProgressBar extends React.Component {
       bar,
       percentage,
       title,
-    }
+    };
   }
 
   render() {

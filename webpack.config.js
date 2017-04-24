@@ -1,11 +1,17 @@
 var HTMLWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var WebpackUglifyJsPlugin = require('webpack-uglify-js-plugin');
+
 var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
     template:   __dirname + '/app/index.html',
     filename:   'index.html',
     inject:     'body'
 });
 var ExtractTextPluginConfig = new ExtractTextPlugin("styles.css");
+var WebpackUglifyJsPluginConfig = new WebpackUglifyJsPlugin({
+    cacheFolder: __dirname + '/build'
+});
+
 
 module.exports = {
     entry:  __dirname + '/app/index.js',
@@ -31,6 +37,7 @@ module.exports = {
     },
     plugins: [
         HTMLWebpackPluginConfig,
-        ExtractTextPluginConfig
+        ExtractTextPluginConfig,
+        WebpackUglifyJsPluginConfig
     ]
 };
