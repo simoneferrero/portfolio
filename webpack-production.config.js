@@ -2,6 +2,7 @@ var Webpack = require('webpack');
 var HTMLWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var WebpackUglifyJsPlugin = require('webpack-uglify-js-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
     template:   __dirname + '/app/index.html',
@@ -17,6 +18,10 @@ var WebpackProductionPluginConfig = new Webpack.DefinePlugin({
         NODE_ENV: JSON.stringify('production')
   }
 });
+var CopyWebpackPluginConfig = new CopyWebpackPlugin([{
+      from: 'img',
+      to: 'img'
+}]);
 
 module.exports = {
     entry:  __dirname + '/app/index.js',
@@ -44,6 +49,7 @@ module.exports = {
         HTMLWebpackPluginConfig,
         ExtractTextPluginConfig,
         WebpackUglifyJsPluginConfig,
-        WebpackProductionPluginConfig
+        WebpackProductionPluginConfig,
+        CopyWebpackPluginConfig
     ]
 };
