@@ -1,5 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
+import PropTypes from 'prop-types';
 
 class ProgressBar extends React.Component {
 
@@ -160,14 +161,14 @@ class ProgressBar extends React.Component {
 }
 
 ProgressBar.propTypes = {
-  colors: React.PropTypes.object,
-  width: React.PropTypes.number,
-  size: React.PropTypes.number,
-  children: React.PropTypes.string,
-  autoStart: React.PropTypes.number,
-  ratio: React.PropTypes.number,
-  duration: React.PropTypes.number,
-  animation: React.PropTypes.bool,
+  colors: PropTypes.object,
+  width: PropTypes.number,
+  size: PropTypes.number,
+  children: PropTypes.string,
+  autoStart: PropTypes.number,
+  ratio: PropTypes.number,
+  duration: PropTypes.number,
+  animation: PropTypes.bool,
 };
 
 ProgressBar.defaultProps = {

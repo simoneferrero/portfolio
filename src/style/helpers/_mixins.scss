@@ -68,4 +68,12 @@
   -o-appearance: $appearance;
 }
 
+@mixin box-sizing($value: border-box) {
+  box-sizing: $value;
+  -webkit-box-sizing: $value;
+  -moz-box-sizing: $value;
+  -ms-box-sizing: $value;
+  -o-box-sizing: $value;
+}
+
 //custom mixins
