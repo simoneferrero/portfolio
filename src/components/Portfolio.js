@@ -6,6 +6,7 @@ import HomePage from './HomePage';
 import IntroPage from './IntroPage';
 import AboutPage from './AboutPage';
 import ProjectsPage from './ProjectsPage';
+import InterestsPage from './InterestsPage';
 import ContactsPage from './ContactsPage';
 
 export default class Portfolio extends React.Component {
@@ -40,27 +41,38 @@ export default class Portfolio extends React.Component {
       home: {
         color: "#e2a31d",
         zIndex: "490",
-        contents: <HomePage />,
+        contents: {
+          front: <HomePage />,
+        },
       },
-      intro: {
+      "about me": {
         color: "#e54d26",
         zIndex: "480",
-        contents: <IntroPage />,
-      },
-      about: {
-        color: "#61dafb",
-        zIndex: "470",
-        contents: <AboutPage />,
+        contents: {
+          front: <IntroPage />,
+          back: <AboutPage />,
+        },
       },
       projects: {
         color: "#de002f",
+        zIndex: "470",
+        contents: {
+          front: <ProjectsPage portrait={this.state.portrait} />,
+        },
+      },
+      interests: {
+        color: "#61dafb",
         zIndex: "460",
-        contents: <ProjectsPage portrait={this.state.portrait} />,
+        contents: {
+          front: <InterestsPage portrait={this.state.portrait} />,
+        },
       },
       contacts: {
         color: "#6c7db7",
         zIndex: "450",
-        contents: <ContactsPage />,
+        contents: {
+          front: <ContactsPage />,
+        },
       }
     };
 
@@ -159,18 +171,17 @@ export default class Portfolio extends React.Component {
             portrait={portrait}
             onClick={onClick}>
               {pages.map(page => {
-                const { zIndex, offSet, name, contents } = page;
+                const { zIndex, offSet, name, contents } = page;//can this be used with ... instead?
                 return (
                   <Page
+                    contents={contents}
                     zIndex={zIndex}
                     offSet={offSet}
                     shadow={shadow}
                     size={size}
                     unit={unit}
                     portrait={portrait}
-                    key={name}>
-                    {contents}
-                  </Page>
+                    key={name} />
                 );
               })}
           </MenuFolder>
