@@ -54,14 +54,14 @@ export default class Portfolio extends React.Component {
         },
       },
       projects: {
-        color: "#de002f",
+        color: "#61dafb",
         zIndex: "470",
         contents: {
           front: <ProjectsPage portrait={this.state.portrait} />,
         },
       },
       interests: {
-        color: "#61dafb",
+        color: "#de002f",
         zIndex: "460",
         contents: {
           front: <InterestsPage portrait={this.state.portrait} />,
