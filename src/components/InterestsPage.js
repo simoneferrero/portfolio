@@ -94,8 +94,7 @@ class InterestsPage extends React.Component {
 
     const movieInfo = {
       height: "90%",
-      paddingLeft: "5%",
-      paddingTop: "5%",
+      padding: "5%",
       textAlign: "justify",
       fontSize: "2vh",
       position: "relative",
@@ -103,7 +102,7 @@ class InterestsPage extends React.Component {
       overflowX: "hidden",
     };
 
-    const blockquote = {
+    const quoteWrap = {
       width: "100%",
     };
 
@@ -120,6 +119,7 @@ class InterestsPage extends React.Component {
       wrapper,
       quoteBlock,
       title,
+      quoteWrap,
       quoteText,
       movieBlock,
       movieImage,
@@ -137,7 +137,7 @@ class InterestsPage extends React.Component {
       wrapper,
       quoteBlock,
       title,
-      blockquote,
+      quoteWrap,
       quoteText,
       movieBlock,
       movieImage,
@@ -150,7 +150,7 @@ class InterestsPage extends React.Component {
       <div style={wrapper}>
         <div style={quoteBlock}>
           <h3 style={title}>Random Quote</h3>
-          <blockquote style={blockquote}>
+          <blockquote style={quoteWrap}>
             <p style={quoteText}>{text}</p>
             <footer>{author}</footer>
           </blockquote>
