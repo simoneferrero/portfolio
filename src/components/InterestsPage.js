@@ -1,7 +1,8 @@
 import React from 'react';
 import Radium from 'radium';
-
-import { getQuote, getMovie, getPlaylist } from '../helpers/interests_functions';
+import { Promise } from 'es6-promise';
+import 'whatwg-fetch';
+import { QUOTES, MEDIA, PLAYLISTS } from '../data/data';
 
 class InterestsPage extends React.Component {
 
@@ -9,14 +10,39 @@ class InterestsPage extends React.Component {
     super();
 
     this.state = {
-      quote: getQuote(),
-      playlist: getPlaylist(),
-      movie: {},
+      quote: this.getRandomItem(QUOTES),
+      playlist: this.getRandomItem(PLAYLISTS),
+      media: {},
     };
+
+    this.fetchShow = this.fetchShow.bind(this);
   }
 
   componentDidMount() {
-    getMovie(this);
+    this.fetchShow();
+  }
+
+  fetchShow() {
+    const randomShow = this.getRandomItem(MEDIA);
+
+    fetch(`http://api.tvmaze.com/lookup/shows?imdb=${randomShow}`)
+      .then(response => response.json())
+      .then(json => {
+        const { name, image, url, summary } = json;
+        const summaryNoHtml = $(summary).text();
+        this.setState({
+          media: {
+            name,
+            url,
+            summary: summaryNoHtml,
+            image: image.medium,
+          },
+        });
+      });
+  }
+
+  getRandomItem(array) {
+    return array[Math.floor(Math.random()*array.length)];
   }
 
   getStyles() {
@@ -36,16 +62,22 @@ class InterestsPage extends React.Component {
     const quoteBlock = {
       display: "inline-block",
       position: "absolute",
-      textAlign: "left",
       width: "40%",
       left: "5%",
       top: "5%",
-      height: "40%",
+      height: "35%",
       overflow: "hidden",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       flexDirection: "column",
+      backgroundColor: "#e2a31d",
+      boxShadow: `${size/50}${unit} ${size/40}${unit} ${size/100}${unit} #262626`,
+      padding: "2%",
+    };
+
+    const quoteWrap = {
+      width: "100%",
     };
 
     const title = {
@@ -57,17 +89,16 @@ class InterestsPage extends React.Component {
       textShadow: `${size/100}${unit} ${size/150}${unit} ${size/200}${unit} #595959`,
       userSelect: "none",
       paddingTop: `${size / 30}${unit}`,
-      paddingBottom: `${size / 40}${unit}`,
       paddingLeft: `${size / 20}${unit}`,
       paddingRight: `${size / 20}${unit}`,
       marginBottom: "2vh",
     };
 
     const quoteText = {
-      fontSize: "3vh",
+      fontSize: `${this.props.portrait ? "2" : "3"}vh`,
     };
 
-    const movieBlock = {
+    const mediaBlock = {
       position: "absolute",
       textAlign: "center",
       width: "40%",
@@ -80,7 +111,12 @@ class InterestsPage extends React.Component {
       flexDirection: "column",
     };
 
-    const movieImage = {
+    const mediaName = {
+      fontSize: "3vh",
+      color: "#de002f",
+    };
+
+    const mediaImage = {
       width: "100%",
       height: "85%",
       display: "flex",
@@ -92,27 +128,30 @@ class InterestsPage extends React.Component {
       height: "80%",
     };
 
-    const movieInfo = {
-      height: "90%",
-      padding: "5%",
+    const mediaInfo = {
+      height: "80%",
+      paddingLeft: "2.5%",
+      paddingBottom: "2.5%",
+      paddingRight: "4%",
       textAlign: "justify",
       fontSize: "2vh",
       position: "relative",
       overflowY: "scroll",
       overflowX: "hidden",
-    };
-
-    const quoteWrap = {
-      width: "100%",
+      width: "65%",
+      marginRight: "-7.5%",
     };
 
     const spotifyBlock = {
-      display: "inline-block",
+      display: "flex",
       position: "absolute",
       width: "40%",
       height: "90%",
       right: "5%",
       top: "5%",
+      justifyContent: "center",
+      flexWrap: "wrap",
+      alignItems: "center",
     };
 
     return {
@@ -121,28 +160,30 @@ class InterestsPage extends React.Component {
       title,
       quoteWrap,
       quoteText,
-      movieBlock,
-      movieImage,
+      mediaBlock,
+      mediaName,
+      mediaImage,
       img,
-      movieInfo,
+      mediaInfo,
       spotifyBlock,
     };
   }
 
   render() {
-    const { quote, playlist, movie } = this.state;
+    const { quote, playlist, media } = this.state;
     const { text, author } = quote;
-    const { name, image, url, summary } = movie;
+    const { name, image, url, summary } = media;
     const {
       wrapper,
       quoteBlock,
       title,
       quoteWrap,
       quoteText,
-      movieBlock,
-      movieImage,
+      mediaBlock,
+      mediaName,
+      mediaImage,
       img,
-      movieInfo,
+      mediaInfo,
       spotifyBlock,
     } = this.getStyles();
 
@@ -155,20 +196,20 @@ class InterestsPage extends React.Component {
             <footer>{author}</footer>
           </blockquote>
         </div>
-        <div style={movieBlock}>
-          <h3 style={title}>Random Movie/TV Show</h3>
-          <a href={url} target="_blank" style={quoteText}>{name}</a>
-          <div style={movieImage}>
+        <div style={mediaBlock}>
+          <h3 style={title}>Random media/TV Show</h3>
+          <a href={url} target="_blank" style={mediaName}>{name}</a>
+          <div style={mediaImage}>
             <img src={image} style={img} />
             {this.props.portrait ? null :
-              (<div style={movieInfo} id="movie_info">
+              (<div style={mediaInfo}>
                 <p>{summary}<br /><br /></p>
               </div>)
             }
           </div>
         </div>
         <div style={spotifyBlock}>
-          <h3 style={title}>Random Playlist</h3>
+          <div><h3 style={title}>Random Playlist</h3></div>
           <iframe
             src={`https://open.spotify.com/embed?uri=${playlist}`}
             width="100%"
