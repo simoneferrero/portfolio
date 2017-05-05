@@ -103,6 +103,10 @@ class InterestsPage extends React.Component {
       overflowX: "hidden",
     };
 
+    const blockquote = {
+      width: "100%",
+    };
+
     const spotifyBlock = {
       display: "inline-block",
       position: "absolute",
@@ -133,6 +137,7 @@ class InterestsPage extends React.Component {
       wrapper,
       quoteBlock,
       title,
+      blockquote,
       quoteText,
       movieBlock,
       movieImage,
@@ -145,7 +150,7 @@ class InterestsPage extends React.Component {
       <div style={wrapper}>
         <div style={quoteBlock}>
           <h3 style={title}>Random Quote</h3>
-          <blockquote>
+          <blockquote style={blockquote}>
             <p style={quoteText}>{text}</p>
             <footer>{author}</footer>
           </blockquote>

@@ -1,3 +1,6 @@
+import { Promise } from 'es6-promise';
+import 'whatwg-fetch';
+
 export function getQuote() {
   const quotes = [
     {
