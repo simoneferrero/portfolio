@@ -3,6 +3,7 @@ import Radium from 'radium';
 import { Promise } from 'es6-promise';
 import 'whatwg-fetch';
 import { QUOTES, MEDIA, PLAYLISTS } from '../data/data';
+import PostIt from './PostIt';
 
 class InterestsPage extends React.Component {
 
@@ -66,19 +67,27 @@ class InterestsPage extends React.Component {
       left: "5%",
       top: "5%",
       height: "35%",
-      overflow: "hidden",
+      // overflow: "hidden",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       flexDirection: "column",
-      backgroundColor: "#e2a31d",
-      boxShadow: `${size/50}${unit} ${size/40}${unit} ${size/100}${unit} #262626`,
-      padding: "2%",
+      // backgroundColor: "#e2a31d",
+      // boxShadow: `${size/50}${unit} ${size/40}${unit} ${size/100}${unit} #262626`,
+      // padding: "2%",
     };
 
     const quoteWrap = {
       width: "100%",
     };
+
+    const titleWrap = {
+      position: "absolute",
+      width: "100%",
+      top: "-3.8vh",
+      display: "flex",
+      justifyContent: "center",
+    }
 
     const title = {
       display: "inline-block",
@@ -91,7 +100,6 @@ class InterestsPage extends React.Component {
       paddingTop: `${size / 30}${unit}`,
       paddingLeft: `${size / 20}${unit}`,
       paddingRight: `${size / 20}${unit}`,
-      marginBottom: "2vh",
     };
 
     const quoteText = {
@@ -105,15 +113,24 @@ class InterestsPage extends React.Component {
       left: "5%",
       bottom: "5%",
       height: "50%",
-      overflow: "hidden",
+      // overflow: "hidden",
       display: "flex",
       alignItems: "center",
       flexDirection: "column",
     };
 
+    const mediaNameWrap = {
+      position: "absolute",
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      top: "0",
+    };
+
     const mediaName = {
       fontSize: "3vh",
       color: "#de002f",
+      position: "absolute",
     };
 
     const mediaImage = {
@@ -126,6 +143,7 @@ class InterestsPage extends React.Component {
 
     const img = {
       height: "80%",
+      marginLeft: "2%",
     };
 
     const mediaInfo = {
@@ -157,10 +175,12 @@ class InterestsPage extends React.Component {
     return {
       wrapper,
       quoteBlock,
+      titleWrap,
       title,
       quoteWrap,
       quoteText,
       mediaBlock,
+      mediaNameWrap,
       mediaName,
       mediaImage,
       img,
@@ -176,10 +196,12 @@ class InterestsPage extends React.Component {
     const {
       wrapper,
       quoteBlock,
+      titleWrap,
       title,
       quoteWrap,
       quoteText,
       mediaBlock,
+      mediaNameWrap,
       mediaName,
       mediaImage,
       img,
@@ -189,24 +211,41 @@ class InterestsPage extends React.Component {
 
     return (
       <div style={wrapper}>
-        <div style={quoteBlock}>
+        {/* <div style={quoteBlock}>
           <h3 style={title}>Random Quote</h3>
           <blockquote style={quoteWrap}>
             <p style={quoteText}>{text}</p>
             <footer>{author}</footer>
           </blockquote>
+        </div> */}
+        <div style={quoteBlock}>
+          <PostIt>
+            <div style={titleWrap}>
+              <h3 style={title}>Random Quote</h3>
+            </div>
+            <blockquote style={quoteWrap}>
+              <p style={quoteText}>{text}</p>
+              <footer>{author}</footer>
+            </blockquote>
+          </PostIt>
         </div>
         <div style={mediaBlock}>
-          <h3 style={title}>Random media/TV Show</h3>
-          <a href={url} target="_blank" style={mediaName}>{name}</a>
-          <div style={mediaImage}>
-            <img src={image} style={img} />
-            {this.props.portrait ? null :
-              (<div style={mediaInfo}>
-                <p>{summary}<br /><br /></p>
-              </div>)
-            }
-          </div>
+          <PostIt>
+            <div style={titleWrap}>
+              <h3 style={title}>Random TV Show</h3>
+            </div>
+            <div style={mediaNameWrap}>
+              <a href={url} target="_blank" style={mediaName}>{name}</a>
+            </div>
+            <div style={mediaImage}>
+              <img src={image} style={img} />
+              {this.props.portrait ? null :
+                (<div style={mediaInfo}>
+                  <p>{summary}<br /><br /></p>
+                </div>)
+              }
+            </div>
+          </PostIt>
         </div>
         <div style={spotifyBlock}>
           <div><h3 style={title}>Random Playlist</h3></div>
