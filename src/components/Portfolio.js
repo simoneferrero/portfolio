@@ -2,11 +2,7 @@ import React from 'react';
 import {StyleRoot} from 'radium';
 import MenuFolder from './MenuFolder';
 import Page from './Page';
-import HomePage from './HomePage';
-import IntroPage from './IntroPage';
-import AboutPage from './AboutPage';
-import ProjectsPage from './ProjectsPage';
-import ContactsPage from './ContactsPage';
+import { getTabs } from '../data/data';
 
 export default class Portfolio extends React.Component {
 
@@ -33,38 +29,6 @@ export default class Portfolio extends React.Component {
     const mq = window.matchMedia("only screen and (orientation: portrait)");
 
     return mq.matches;
-  }
-
-  getElements() {
-    const elements = {
-      home: {
-        color: "#e2a31d",
-        zIndex: "490",
-        contents: <HomePage />,
-      },
-      intro: {
-        color: "#e54d26",
-        zIndex: "480",
-        contents: <IntroPage />,
-      },
-      about: {
-        color: "#61dafb",
-        zIndex: "470",
-        contents: <AboutPage />,
-      },
-      projects: {
-        color: "#de002f",
-        zIndex: "460",
-        contents: <ProjectsPage portrait={this.state.portrait} />,
-      },
-      contacts: {
-        color: "#6c7db7",
-        zIndex: "450",
-        contents: <ContactsPage />,
-      }
-    };
-
-    return elements;
   }
 
   togglePage(name, color) {
@@ -110,9 +74,9 @@ export default class Portfolio extends React.Component {
 
   render() {
     const { size, radius, unit, shadow, portfolio } = this.getStyles();
-    const elements = this.getElements();
     const { main, color, portrait } = this.state;
     const onClick = this.togglePage;
+    const elements = getTabs(this.state.portrait);
 
     const labels = [];
     const pages = [];
@@ -159,18 +123,17 @@ export default class Portfolio extends React.Component {
             portrait={portrait}
             onClick={onClick}>
               {pages.map(page => {
-                const { zIndex, offSet, name, contents } = page;
+                const { zIndex, offSet, name, contents } = page;//can this be used with ... instead?
                 return (
                   <Page
+                    contents={contents}
                     zIndex={zIndex}
                     offSet={offSet}
                     shadow={shadow}
                     size={size}
                     unit={unit}
                     portrait={portrait}
-                    key={name}>
-                    {contents}
-                  </Page>
+                    key={name} />
                 );
               })}
           </MenuFolder>

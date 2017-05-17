@@ -25,9 +25,10 @@ module.exports = (env = {}) => {
 
   return {
     context: path.resolve(__dirname, './src'),
-    entry: {
-      app: './index.js',
-    },
+    entry: [
+      'whatwg-fetch',
+      './index.js',
+    ],
     output: {
       path: path.resolve(__dirname, './build'),
       filename: isProduction ? 'bundle.min.js' : 'bundle.js',
