@@ -20,6 +20,7 @@ class PostIt extends React.Component {
   }
 
   getStyles() {
+    const { colors } = this.props;
     const wrapper = {
       position: "absolute",
       height: "100%",
@@ -30,14 +31,15 @@ class PostIt extends React.Component {
       height: "100%",
       width: "100%",
       position: "relative",
-      background: "linear-gradient(135deg, #ffff88 71%,#ffff88 72%,#ffff88 72%,#ffffc6 100%)",
-      borderTop: "5vh solid #fdfd86",
+      background: `linear-gradient(135deg, ${colors.base} 71%, ${colors.base} 72%, ${colors.base} 72%, ${colors.corner} 100%)`,
+      borderTop: `5vh solid ${colors.top}`,
       borderBottom: ".1vh solid #E8E8E8",
       borderLeft: ".1vh solid #E8E8E8",
       borderRight: ".1vh solid #E8E8E8",
       borderBottomRightRadius: "6vh .6vw",
       display: "flex",
       alignItems: "center",
+      justifyContent: "center",
     };
 
     const shadow = {

@@ -46,6 +46,26 @@ class InterestsPage extends React.Component {
     return array[Math.floor(Math.random()*array.length)];
   }
 
+  getColors() {
+    return {
+      yellow: {
+        base: "#ffff88",
+        corner: "#ffffc6",
+        top: "#fdfd86",
+      },
+      pink: {
+        base: "#ff6bd0",
+        corner: "#ffaae3",
+        top: "#fc67cc",
+      },
+      blue: {
+        base: "#88efff",
+        corner: "#bcf6ff",
+        top: "#84eaf9",
+      }
+    }
+  }
+
   getStyles() {
     const size = 18;
     const radius = (size / 6);
@@ -67,14 +87,12 @@ class InterestsPage extends React.Component {
       left: "5%",
       top: "5%",
       height: "35%",
-      // overflow: "hidden",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       flexDirection: "column",
-      // backgroundColor: "#e2a31d",
-      // boxShadow: `${size/50}${unit} ${size/40}${unit} ${size/100}${unit} #262626`,
-      // padding: "2%",
+      transform: "rotate(4deg)",
+      zIndex: "200",
     };
 
     const quoteWrap = {
@@ -91,15 +109,9 @@ class InterestsPage extends React.Component {
 
     const title = {
       display: "inline-block",
-      backgroundColor: "#262626",
-      color: "#f2f2f2",
-      borderRadius: `.5${unit}`,
-      fontFamily: "'Special Elite', cursive",
-      textShadow: `${size/100}${unit} ${size/150}${unit} ${size/200}${unit} #595959`,
       userSelect: "none",
-      paddingTop: `${size / 30}${unit}`,
-      paddingLeft: `${size / 20}${unit}`,
-      paddingRight: `${size / 20}${unit}`,
+      fontFamily: "'Permanent Marker', cursive",
+      fontSize: "larger",
     };
 
     const quoteText = {
@@ -113,10 +125,11 @@ class InterestsPage extends React.Component {
       left: "5%",
       bottom: "5%",
       height: "50%",
-      // overflow: "hidden",
       display: "flex",
       alignItems: "center",
       flexDirection: "column",
+      transform: "rotate(-2deg)",
+      zIndex: "100",
     };
 
     const mediaNameWrap = {
@@ -124,7 +137,7 @@ class InterestsPage extends React.Component {
       width: "100%",
       display: "flex",
       justifyContent: "center",
-      top: "0",
+      top: "1vh",
     };
 
     const mediaName = {
@@ -137,7 +150,7 @@ class InterestsPage extends React.Component {
       width: "100%",
       height: "85%",
       display: "flex",
-      alignItems: "center",
+      alignItems: "flex-end",
       justifyContent: this.props.portrait ? "center" : "space-between",
     };
 
@@ -146,18 +159,24 @@ class InterestsPage extends React.Component {
       marginLeft: "2%",
     };
 
-    const mediaInfo = {
+    const mediaInfoWrap = {
       height: "80%",
+      position: "relative",
       paddingLeft: "2.5%",
       paddingBottom: "2.5%",
       paddingRight: "4%",
       textAlign: "justify",
       fontSize: "2vh",
-      position: "relative",
+      overflow: "hidden",
+    };
+
+    const mediaInfo = {
       overflowY: "scroll",
       overflowX: "hidden",
-      width: "65%",
+      width: "130%",
+      paddingRight: "20%",
       marginRight: "-7.5%",
+      height: "100%",
     };
 
     const spotifyBlock = {
@@ -170,6 +189,12 @@ class InterestsPage extends React.Component {
       justifyContent: "center",
       flexWrap: "wrap",
       alignItems: "center",
+      transform: "rotate(3deg)",
+    };
+
+    const musicWrap = {
+      width: "90%",
+      height: "90%",
     };
 
     return {
@@ -184,8 +209,10 @@ class InterestsPage extends React.Component {
       mediaName,
       mediaImage,
       img,
+      mediaInfoWrap,
       mediaInfo,
       spotifyBlock,
+      musicWrap,
     };
   }
 
@@ -205,21 +232,17 @@ class InterestsPage extends React.Component {
       mediaName,
       mediaImage,
       img,
+      mediaInfoWrap,
       mediaInfo,
       spotifyBlock,
+      musicWrap,
     } = this.getStyles();
+    const { yellow, pink, blue } = this.getColors();
 
     return (
       <div style={wrapper}>
-        {/* <div style={quoteBlock}>
-          <h3 style={title}>Random Quote</h3>
-          <blockquote style={quoteWrap}>
-            <p style={quoteText}>{text}</p>
-            <footer>{author}</footer>
-          </blockquote>
-        </div> */}
         <div style={quoteBlock}>
-          <PostIt>
+          <PostIt colors={blue}>
             <div style={titleWrap}>
               <h3 style={title}>Random Quote</h3>
             </div>
@@ -230,7 +253,7 @@ class InterestsPage extends React.Component {
           </PostIt>
         </div>
         <div style={mediaBlock}>
-          <PostIt>
+          <PostIt colors={yellow}>
             <div style={titleWrap}>
               <h3 style={title}>Random TV Show</h3>
             </div>
@@ -240,22 +263,28 @@ class InterestsPage extends React.Component {
             <div style={mediaImage}>
               <img src={image} style={img} />
               {this.props.portrait ? null :
-                (<div style={mediaInfo}>
-                  <p>{summary}<br /><br /></p>
+                (<div style={mediaInfoWrap}>
+                  <div style={mediaInfo}><p>{summary}<br /><br /></p></div>
                 </div>)
               }
             </div>
           </PostIt>
         </div>
         <div style={spotifyBlock}>
-          <div><h3 style={title}>Random Playlist</h3></div>
-          <iframe
-            src={`https://open.spotify.com/embed?uri=${playlist}`}
-            width="100%"
-            height="90%"
-            frameBorder="0"
-            allowTransparency="true"
-          ></iframe>
+          <PostIt colors={pink}>
+            <div style={titleWrap}>
+              <h3 style={title}>Random Playlist</h3>
+            </div>
+            <div style={musicWrap}>
+              <iframe
+                src={`https://open.spotify.com/embed?uri=${playlist}`}
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                allowTransparency="true"
+              ></iframe>
+            </div>
+          </PostIt>
         </div>
        </div>
     );
