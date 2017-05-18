@@ -41,7 +41,7 @@ export function getTabs(portrait) {
       color: "#6c7db7",
       zIndex: "450",
       contents: {
-        front: <ContactsPage />,
+        front: <ContactsPage portrait={portrait} />,
       },
     },
   };
