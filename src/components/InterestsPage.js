@@ -4,6 +4,7 @@ import { Promise } from 'es6-promise';
 import 'whatwg-fetch';
 import { QUOTES, MEDIA, PLAYLISTS } from '../data/data';
 import PostIt from './PostIt';
+import { POSTITCOLORS } from '../data/data';
 
 class InterestsPage extends React.Component {
 
@@ -44,26 +45,6 @@ class InterestsPage extends React.Component {
 
   getRandomItem(array) {
     return array[Math.floor(Math.random()*array.length)];
-  }
-
-  getColors() {
-    return {
-      yellow: {
-        base: "#ffff88",
-        corner: "#ffffc6",
-        top: "#fdfd86",
-      },
-      pink: {
-        base: "#ff6bd0",
-        corner: "#ffaae3",
-        top: "#fc67cc",
-      },
-      blue: {
-        base: "#88efff",
-        corner: "#bcf6ff",
-        top: "#84eaf9",
-      }
-    }
   }
 
   getStyles() {
@@ -237,7 +218,7 @@ class InterestsPage extends React.Component {
       spotifyBlock,
       musicWrap,
     } = this.getStyles();
-    const { yellow, pink, blue } = this.getColors();
+    const { yellow, pink, blue } = POSTITCOLORS;
 
     return (
       <div style={wrapper}>

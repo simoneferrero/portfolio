@@ -6,17 +6,30 @@ import ProjectsPage from '../components/ProjectsPage';
 import InterestsPage from '../components/InterestsPage';
 import ContactsPage from '../components/ContactsPage';
 
-export function getTabs(portrait) {
-  return {
+const colors = {
+  yellowDark: "#e2a31d",
+  yellowLight: "#f6e4bb",
+  orangeDark: "#e54d26",
+  orangeLight: "#f4b4a4",
+  blueDark: "#61dafb",
+  blueLight: "#e6f9fe",
+  redDark: "#de002f",
+  redLight: "#ff99af",
+  purpleDark: "#6c7db7",
+  purpleLight: "#ccd2e6",
+}
+
+export const getTabs = (portrait) => {
+  const tabs = {
     home: {
-      color: "#e2a31d",
+      color: colors.yellowDark,
       zIndex: "490",
       contents: {
         front: <HomePage />,
       },
     },
     "about me": {
-      color: "#e54d26",
+      color: colors.orangeDark,
       zIndex: "480",
       contents: {
         front: <IntroPage />,
@@ -24,67 +37,69 @@ export function getTabs(portrait) {
       },
     },
     projects: {
-      color: "#61dafb",
+      color: colors.blueDark,
       zIndex: "470",
       contents: {
         front: <ProjectsPage portrait={portrait} />,
       },
     },
     interests: {
-      color: "#de002f",
+      color: colors.redDark,
       zIndex: "460",
       contents: {
         front: <InterestsPage portrait={portrait} />,
       },
     },
     contacts: {
-      color: "#6c7db7",
+      color: colors.purpleDark,
       zIndex: "450",
       contents: {
         front: <ContactsPage portrait={portrait} />,
       },
     },
   };
+
+  return tabs;
 };
 
 export const LANGUAGES = [
   {
     name: "HTML/CSS",
     colors: {
-      baseColor: "#f4b4a4",
-      barColor: "#e54d26"
+      baseColor: colors.orangeLight,
+      barColor: colors.orangeDark
     },
     width: 5
   },
   {
     name: "JavaScript/jQuery",
     colors: {
-      baseColor: "#f6e4bb",
-      barColor: "#e2a31d"
+      baseColor: colors.yellowLight,
+      barColor: colors.yellowDark
     },
     width: 4
   },
   {
     name: "PHP",
     colors: {
-      baseColor: "#ccd2e6",
-      barColor: "#6c7db7"
+      baseColor: colors.purpleLight,
+      barColor: colors.purpleDark
     },
     width: 3
   },
   {
     name: "ReactJS",
     colors: {
-      baseColor: "#e6f9fe",
-      barColor: "#61dafb"
+      baseColor: colors.blueLight,
+      barColor: colors.blueDark
     },
     width: 2
   },
   {
     name: "AngularJS",
     colors: {
-      baseColor: "#ff99af",
-      barColor: "#de002f"
+      baseColor: colors.redLight,
+      barColor: colors.redDark
     },
     width: 1
   },
@@ -149,6 +164,24 @@ export const PROJECTS = [
   },
 ];
 
+export const POSTITCOLORS = {
+  yellow: {
+    base: "#ffff88",
+    corner: "#ffffc6",
+    top: "#fdfd86",
+  },
+  pink: {
+    base: "#ff6bd0",
+    corner: "#ffaae3",
+    top: "#fc67cc",
+  },
+  blue: {
+    base: "#88efff",
+    corner: "#bcf6ff",
+    top: "#84eaf9",
+  }
+};
+
 export const QUOTES = [
   {
     text: "Always write code as if the guy who maintains it is a violent psychopath who knows where you live.",
@@ -183,3 +216,46 @@ export const PLAYLISTS = [
   "spotify:user:11149054722:playlist:1409kAiDDvL2Mbuc3BEuzf",
   "spotify:user:arminvanbuurenofficial:playlist:0Hu49FCkYPuWuAAy0XEx0M",
 ];
+
+export const getLinks = (portrait) => {
+  const links = [
+    {
+      name: "email",
+      url: "mailto:simone.ferrero@outlook.com",
+      style: {
+        flexBasis: "35%",
+      },
+
+    },
+    {
+      name: "cv",
+      url: "cvsimoneferrero.pdf",
+      style: {
+        flexBasis: "35%",
+      },
+    },
+    {
+      name: "linkedin",
+      url: "https://www.linkedin.com/in/simoneferrero/",
+      style: {
+        flexBasis: portrait ? "100%" : "33%",
+      },
+    },
+    {
+      name: "github",
+      url: "https://www.github.com/simoneferrero",
+      style: {
+        flexBasis: "33%",
+      },
+    },
+    {
+      name: "twitter",
+      url: "https://twitter.com/_simoneferrero",
+      style: {
+        flexBasis: "33%",
+      },
+    },
+  ];
+
+  return links;
+}

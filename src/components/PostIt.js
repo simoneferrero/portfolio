@@ -47,9 +47,9 @@ class PostIt extends React.Component {
       zIndex: "-1",
       width: "15vw",
       height: "5vh",
-      right: ".5vw",//portrait: "1vw",
-      bottom: "3vh",//portrait: "2.9vh",
-      boxShadow:".2vh 3vh .5vh rgba(0, 0, 0, 0.40)",
+      right: ".5vw",
+      bottom: "3vh",
+      boxShadow: ".2vh 3vh .5vh rgba(0, 0, 0, 0.40)",
       transform: "skewX(1deg) rotate(4deg)",
     };
 
