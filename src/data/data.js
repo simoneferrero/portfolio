@@ -138,7 +138,7 @@ export const PROJECTS = [
   {
     id: "Portfolio2016",
     name: "Portfolio 2016",
-    icon: "img/decisionmaker.png",
+    icon: "img/portfolio2016.png",
     link: "portfolio2016/index.html",
     description: `This is how my portfolio looked in 2016.
 
@@ -225,6 +225,7 @@ export const getLinks = (portrait) => {
       style: {
         flexBasis: "35%",
       },
+      color: colors.yellowDark,
 
     },
     {
@@ -233,6 +234,7 @@ export const getLinks = (portrait) => {
       style: {
         flexBasis: "35%",
       },
+      color: colors.orangeDark,
     },
     {
       name: "linkedin",
@@ -240,6 +242,7 @@ export const getLinks = (portrait) => {
       style: {
         flexBasis: portrait ? "100%" : "33%",
       },
+      color: colors.blueDark,
     },
     {
       name: "github",
@@ -247,6 +250,7 @@ export const getLinks = (portrait) => {
       style: {
         flexBasis: "33%",
       },
+      color: colors.redDark,
     },
     {
       name: "twitter",
@@ -254,6 +258,7 @@ export const getLinks = (portrait) => {
       style: {
         flexBasis: "33%",
       },
+      color: colors.purpleDark,
     },
   ];
 

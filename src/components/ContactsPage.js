@@ -5,6 +5,20 @@ import { getLinks } from '../data/data';
 
 class ContactsPage extends React.Component {
 
+  shadowOnHover(color) {
+    const shadow1 = `.2vh .2vh 1vh ${color}`;
+    const shadow2 = `.2vh -.2vh 1vh ${color}`;
+
+    const iconWrapHover = {
+      ":hover": {
+        transform: "rotate(360deg)",
+        boxShadow: `${shadow1}, -${shadow1}, ${shadow2}, -${shadow2}`,
+      },
+    };
+
+    return iconWrapHover;
+  }
+
   getStyles() {
     const { portrait } = this.props;
 
@@ -52,10 +66,6 @@ class ContactsPage extends React.Component {
       transition: "0.3s linear",
       fontFamily: "'Permanent Marker', cursive",
       color: "black",
-      ":hover": {
-        transform: "rotate(360deg)",
-        boxShadow: `${shadow1}, -${shadow1}, ${shadow2}, -${shadow2}`,
-      },
     };
 
     const icon = {
@@ -96,11 +106,11 @@ class ContactsPage extends React.Component {
         </span>
         <div style={linksWrap}>
           {links.map(link => {
-            const { name, url, style } = link;
+            const { name, url, style, color } = link;
             return (
               <div style={{...flex, ...style}} key={name}>
                 <a href={url} target="_blank">
-                  <div style={iconWrap} key={name}>
+                  <div style={{...iconWrap, ...this.shadowOnHover(color)}} key={name}>
                     <img src={`img/logos/${name}.png`} style={icon} />
                     <span>{name.toUpperCase()}</span>
                   </div>
