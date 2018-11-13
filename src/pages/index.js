@@ -1,36 +1,15 @@
 import React from 'react'
-import { Link } from 'gatsby'
-
-import Image from 'components/Image'
 
 const IndexPage = () => (
   <>
-    <h1>Richard Hamming on Luck</h1>
+    <h1>This is my home page</h1>
     <div>
-      <p>
-        From Richard Hamming’s classic and must-read talk, “
-        <a href="http://www.cs.virginia.edu/~robins/YouAndYourResearch.html">
-          You and Your Research
-        </a>
-        ”.
-      </p>
+      <p>I'm going to post my best stuff here first</p>
       <blockquote>
-        <p>
-          There is indeed an element of luck, and no, there isn’t. The prepared
-          mind sooner or later finds something important and does it. So yes, it
-          is luck.{' '}
-          <em>
-            The particular thing you do is luck, but that you do something is
-            not.
-          </em>
-        </p>
+        <p>We aim to misbehave.</p>
       </blockquote>
     </div>
-    <p>Posted April 09, 2011</p>
-    <div style={{ maxWidth: '300px', marginBottom: '1.45rem' }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    <p>Captain Malcolm Reynolds</p>
   </>
 )
 

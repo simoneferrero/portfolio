@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
+import MainLogo from 'components/MainLogo'
+
 const Header = ({ siteTitle }) => (
   <div
     style={{
-      background: 'rebeccapurple',
       marginBottom: '1.45rem',
     }}
   >
@@ -13,20 +14,39 @@ const Header = ({ siteTitle }) => (
         margin: '0 auto',
         maxWidth: 960,
         padding: '1.45rem 1.0875rem',
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
       }}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-            fontFamily: 'sans-serif',
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+      <Link
+        to="/about"
+        style={{
+          color: 'rebeccapurple',
+          textDecoration: 'none',
+        }}
+      >
+        About
+      </Link>
+      <Link
+        to="/"
+        style={{
+          color: 'rebeccapurple',
+          width: '3rem',
+          height: '3rem',
+        }}
+      >
+        <MainLogo />
+      </Link>
+      <Link
+        to="/info"
+        style={{
+          color: 'rebeccapurple',
+          textDecoration: 'none',
+        }}
+      >
+        Info
+      </Link>
     </div>
   </div>
 )
