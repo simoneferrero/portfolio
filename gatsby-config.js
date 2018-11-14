@@ -38,6 +38,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-resolve-src',
+    'gatsby-plugin-emotion',
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',

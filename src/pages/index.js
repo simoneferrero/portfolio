@@ -1,6 +1,6 @@
 import React from 'react'
 
-const IndexPage = () => (
+export default () => (
   <>
     <h1>This is my home page</h1>
     <div>
@@ -12,5 +12,3 @@ const IndexPage = () => (
     <p>Captain Malcolm Reynolds</p>
   </>
 )
-
-export default IndexPage

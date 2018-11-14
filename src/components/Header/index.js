@@ -1,52 +1,54 @@
 import React from 'react'
-import { Link } from 'gatsby'
 
+import MenuItem from 'components/MenuItem'
 import MainLogo from 'components/MainLogo'
 
+import { css } from 'emotion'
+
+const outerWrapperStyles = css`
+  margin-bottom: 1.45rem;
+  overflow: visible;
+`
+
+const innerWrapperStyles = css`
+  margin: 0px auto;
+  max-width: 960px;
+  padding: 1rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 4rem;
+  overflow: visible;
+`
+
+const mainLogoStyles = css`
+  width: 5rem;
+  height: 5rem;
+  padding: 0.5rem;
+  border-radius: 100%;
+`
+
+const crossBarStyles = css`
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rebeccapurple;
+  z-index: -1;
+`
+
 const Header = ({ siteTitle }) => (
-  <div
-    style={{
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-        display: 'flex',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-      }}
-    >
-      <Link
-        to="/about"
-        style={{
-          color: 'rebeccapurple',
-          textDecoration: 'none',
-        }}
-      >
-        About
-      </Link>
-      <Link
-        to="/"
-        style={{
-          color: 'rebeccapurple',
-          width: '3rem',
-          height: '3rem',
-        }}
-      >
+  <div className={outerWrapperStyles}>
+    <div className={innerWrapperStyles}>
+      <div className={crossBarStyles} />
+      <MenuItem path="/about">ABOUT</MenuItem>
+      <MenuItem path="/info">INFO</MenuItem>
+      <MenuItem className={mainLogoStyles} path="/">
         <MainLogo />
-      </Link>
-      <Link
-        to="/info"
-        style={{
-          color: 'rebeccapurple',
-          textDecoration: 'none',
-        }}
-      >
-        Info
-      </Link>
+      </MenuItem>
+      <MenuItem path="/projects">PROJECTS</MenuItem>
+      <MenuItem path="/contact">CONTACT</MenuItem>
     </div>
   </div>
 )
