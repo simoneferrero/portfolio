@@ -12,8 +12,7 @@ import { css } from 'emotion'
 const layoutBodyStyles = css`
   margin: 0 auto;
   max-width: 960px;
-  padding: 0px 1rem 1.5rem;
-  padding-top: 0px;
+  padding: 1.5rem 1rem;
 `
 
 const Layout = ({ children, location }) => (

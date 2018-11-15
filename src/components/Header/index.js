@@ -6,7 +6,6 @@ import MainLogo from 'components/MainLogo'
 import { css } from 'emotion'
 
 const outerWrapperStyles = css`
-  margin-bottom: 1.45rem;
   overflow: visible;
 `
 
@@ -17,13 +16,13 @@ const innerWrapperStyles = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-height: 4rem;
+  max-height: 5rem;
   overflow: visible;
 `
 
 const mainLogoStyles = css`
-  width: 5rem;
-  height: 5rem;
+  width: 6rem;
+  height: 6rem;
   padding: 0.5rem;
   border-radius: 100%;
 `
