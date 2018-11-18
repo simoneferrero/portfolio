@@ -4,23 +4,31 @@ import {
   Transition as ReactTransition,
 } from 'react-transition-group'
 
-import { css } from 'emotion'
+import { css, cx } from 'emotion'
 
-const timeout = 250
+const timeout = 750
 const getTransitionStyles = {
   entering: css`
     position: absolute;
-    opacity: 0;
+    max-height: 0;
   `,
   entered: css`
-    transition: opacity ${timeout}ms ease-in-out;
-    opacity: 1;
+    transition: ${timeout}ms ease-in-out;
+    max-height: 75vh;
   `,
   exiting: css`
-    transition: opacity ${timeout}ms ease-in-out;
-    opacity: 0;
+    transition: ${timeout}ms ease-in-out;
+    max-height: 0;
   `,
 }
+
+const noOverflowStyles = css`
+  overflow: hidden;
+
+  & > div {
+    padding: 1.5rem 1rem;
+  }
+`
 
 class Transition extends React.PureComponent {
   render() {
@@ -36,7 +44,9 @@ class Transition extends React.PureComponent {
           }}
         >
           {(status) => (
-            <div className={getTransitionStyles[status]}>{children}</div>
+            <div className={cx(getTransitionStyles[status], noOverflowStyles)}>
+              <div>{children}</div>
+            </div>
           )}
         </ReactTransition>
       </TransitionGroup>

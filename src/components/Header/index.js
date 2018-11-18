@@ -1,9 +1,12 @@
 import React from 'react'
+import { string } from 'prop-types'
 
 import MenuItem from 'components/MenuItem'
 import MainLogo from 'components/MainLogo'
 
 import { css } from 'emotion'
+
+import { colors } from 'css/theme'
 
 const outerWrapperStyles = css`
   overflow: visible;
@@ -20,36 +23,39 @@ const innerWrapperStyles = css`
   overflow: visible;
 `
 
-const mainLogoStyles = css`
-  width: 6rem;
-  height: 6rem;
-  padding: 0.5rem;
-  border-radius: 100%;
-`
-
 const crossBarStyles = css`
   position: absolute;
   left: 0;
   width: 100%;
   border-width: 1px;
   border-style: solid;
-  border-color: rebeccapurple;
+  border-color: ${colors.white};
   z-index: -1;
 `
 
-const Header = ({ siteTitle }) => (
+const Header = ({ currentPath }) => (
   <div className={outerWrapperStyles}>
     <div className={innerWrapperStyles}>
       <div className={crossBarStyles} />
-      <MenuItem path="/about">ABOUT</MenuItem>
-      <MenuItem path="/info">INFO</MenuItem>
-      <MenuItem className={mainLogoStyles} path="/">
-        <MainLogo />
+      <MenuItem path="/about" selected={currentPath === '/about'}>
+        ABOUT
       </MenuItem>
-      <MenuItem path="/projects">PROJECTS</MenuItem>
-      <MenuItem path="/contact">CONTACT</MenuItem>
+      <MenuItem path="/info" selected={currentPath === '/info'}>
+        INFO
+      </MenuItem>
+      <MainLogo selected={currentPath === '/'} />
+      <MenuItem path="/projects" selected={currentPath === '/projects'}>
+        PROJECTS
+      </MenuItem>
+      <MenuItem path="/contact" selected={currentPath === '/contact'}>
+        CONTACT
+      </MenuItem>
     </div>
   </div>
 )
+
+Header.propTypes = {
+  currentPath: string.isRequired,
+}
 
 export default Header

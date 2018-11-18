@@ -1,0 +1,13 @@
+body {
+  background-color: #1d1f23;
+  color: #FFF;
+  overflow: hidden;
+}
+
+h1, h2, h3, h4, h5, p, blockquote {
+  color: #FFF;
+}
+
+blockquote {
+  border-left-color: #FFF;
+}
