@@ -11,20 +11,20 @@ const getTransitionStyles = {
   entering: css`
     position: absolute;
     max-height: 0;
+    overflow: hidden;
   `,
   entered: css`
     transition: ${timeout}ms ease-in-out;
-    max-height: 75vh;
+    max-height: 100vh;
   `,
   exiting: css`
     transition: ${timeout}ms ease-in-out;
     max-height: 0;
+    overflow: hidden;
   `,
 }
 
-const noOverflowStyles = css`
-  overflow: hidden;
-
+const wrapperStyles = css`
   & > div {
     padding: 1.5rem 1rem;
   }
@@ -44,7 +44,7 @@ class Transition extends React.PureComponent {
           }}
         >
           {(status) => (
-            <div className={cx(getTransitionStyles[status], noOverflowStyles)}>
+            <div className={cx(getTransitionStyles[status], wrapperStyles)}>
               <div>{children}</div>
             </div>
           )}

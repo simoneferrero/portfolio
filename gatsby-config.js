@@ -1,6 +1,10 @@
+require('dotenv').config({
+  path: `.env`,
+})
+
 module.exports = {
   siteMetadata: {
-    title: 'Simone Ferrero\'s Portfolio',
+    title: "Simone Ferrero's Portfolio",
   },
   plugins: [
     {
@@ -23,6 +27,24 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: 'gatsby-source-graphql',
+      options: {
+        typeName: 'GitHub',
+        fieldName: 'github',
+        url: 'https://api.github.com/graphql',
+        headers: {
+          Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
+        },
+      },
+    },
+    {
+      resolve: `gatsby-source-medium`,
+      options: {
+        username: `@simoneferrero`,
+        limit: 10,
+      },
+    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
@@ -31,10 +53,10 @@ module.exports = {
         name: 'gatsby-starter-default',
         short_name: 'starter',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: '#1d1f23',
+        theme_color: '#1d1f23',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
+        icon: 'src/images/main-logo.png',
       },
     },
     'gatsby-plugin-resolve-src',

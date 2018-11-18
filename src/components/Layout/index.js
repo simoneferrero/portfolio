@@ -1,3 +1,4 @@
+// TODO: refactor structure of code and components
 import React from 'react'
 import { node, shape, string } from 'prop-types'
 
@@ -20,38 +21,40 @@ const wrapperStyles = css`
   min-height: 100vh;
 `
 
-const layoutBodyStyles = css`
-  margin: 0 auto;
-  width: 960px;
+const sectionWrapperStyles = css`
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  align-items: flex-end;
+
+  & > div {
+    margin: 0 auto;
+    width: 960px;
+    position: relative;
+
+    &::before {
+      content: '';
+      height: 50vh;
+      border: 1px solid ${colors.white};
+      position: absolute;
+      left: calc(50% - 1px);
+      z-index: -1;
+      bottom: 100%;
+    }
+  }
+`
+
+const contentStyles = css`
   border-top: 2px solid ${colors.white};
   border-bottom: 2px solid ${colors.white};
-  position: relative;
-
-  &::before {
-    content: '';
-    height: 50vh;
-    border: 1px solid #fff;
-    position: absolute;
-    bottom: 100%;
-    left: calc(50% - 1px);
-    z-index: -1;
-  }
-
-  &::after {
-    content: '';
-    height: 50vh;
-    border: 1px solid #fff;
-    position: absolute;
-    top: 100%;
-    left: calc(50% - 1px);
-    z-index: -1;
-  }
 `
 
 const Layout = ({ children, location }) => (
   <StaticQuery
     query={graphql`
-      query SiteTitleQuery {
+      query {
         site {
           siteMetadata {
             title
@@ -72,10 +75,16 @@ const Layout = ({ children, location }) => (
         </Helmet>
         <div className={wrapperStyles}>
           <Header currentPath={location.pathname} />
-          <div className={layoutBodyStyles}>
-            <Transition location={location}>{children}</Transition>
+          <div className={sectionWrapperStyles}>
+            <div className={contentStyles}>
+              <Transition location={location}>{children}</Transition>
+            </div>
           </div>
-          <Footer />
+          <div className={sectionWrapperStyles}>
+            <div>
+              <Footer />
+            </div>
+          </div>
         </div>
       </>
     )}

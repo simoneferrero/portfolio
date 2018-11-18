@@ -2,13 +2,10 @@ import React from 'react'
 
 export default () => (
   <>
-    <h1>This is my home page</h1>
+    <h1>Hi, I'm Simone,</h1>
     <div>
-      <p>I'm going to post my best stuff here first</p>
-      <blockquote>
-        <p>We aim to misbehave.</p>
-      </blockquote>
+      <p>your friendly neighbourhood front-end developer.</p>
+      <p>Welcome to my portfolio.</p>
     </div>
-    <p>Captain Malcolm Reynolds</p>
   </>
 )
