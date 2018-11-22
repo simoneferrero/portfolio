@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { colors } from 'css/theme'
+
 export default () => (
   <svg
     baseProfile="tiny"
@@ -20,10 +22,10 @@ export default () => (
           x2="75.0387"
           y2="1.8192"
         >
-          <stop offset="0" style={{ stopColor: '#FFFFFF' }} />
+          <stop offset="0" style={{ stopColor: colors.white }} />
           <stop
             offset="0.9059"
-            style={{ stopColor: '#000000', stopOpacity: 0 }}
+            style={{ stopColor: colors.black, stopOpacity: 0 }}
           />
         </linearGradient>
         <path
@@ -42,9 +44,9 @@ export default () => (
         >
           <stop
             offset="9.680001e-002"
-            style={{ stopColor: '#000000', stopOpacity: 0 }}
+            style={{ stopColor: colors.black, stopOpacity: 0 }}
           />
-          <stop offset="1" style={{ stopColor: '#FFFFFF' }} />
+          <stop offset="1" style={{ stopColor: colors.white }} />
         </linearGradient>
         <path
           fill="url(#SVGID_2_)"
@@ -52,19 +54,5 @@ export default () => (
         />
       </g>
     </g>
-    {/* <g>
-      <g>
-        <path
-          fill="#FFFFFF"
-          d="M0,53.2V42.7L72,0v19.5L23.2,46.9v0.9L72,76.2v19.9L0,53.2z"
-        />
-      </g>
-      <g>
-        <path
-          fill="#FFFFFF"
-          d="M72,105.7v10.6L0,158.9l0-19.5L48.8,112V111L0,82.7l0-19.9L72,105.7z"
-        />
-      </g>
-    </g> */}
   </svg>
 )
