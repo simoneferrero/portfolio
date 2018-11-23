@@ -19,6 +19,20 @@ const wrapperStyles = css`
   justify-content: space-between;
   min-width: 100%;
   min-height: 100vh;
+
+  & h1, & h2, & h3 {
+    color: ${colors.white};
+  }
+
+  & a {
+    color: ${colors.white};
+    font-weight: 700;
+    text-decoration: none;
+
+    & :hover {
+      color: ${colors.white};
+    }
+  }
 `
 
 const sectionWrapperStyles = css`

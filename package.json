@@ -15,7 +15,7 @@
     "gatsby-plugin-offline": "^2.0.15",
     "gatsby-plugin-react-helmet": "^3.0.2",
     "gatsby-plugin-resolve-src": "^2.0.0-beta.1",
-    "gatsby-plugin-sharp": "^2.0.12",
+    "gatsby-plugin-sharp": "^2.0.13",
     "gatsby-plugin-typography": "^2.2.1",
     "gatsby-source-filesystem": "^2.0.8",
     "gatsby-source-graphql": "^2.0.6",
@@ -39,13 +39,15 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "deploy": "npm install && gatsby build && surge --project ./public --domain simoneferrero.net",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "prettier": "^1.15.2"
+    "prettier": "^1.15.2",
+    "surge": "^0.20.1"
   },
   "eslintConfig": {
     "extends": "react-app"
