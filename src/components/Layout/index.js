@@ -8,6 +8,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import Transition from 'components/Transition'
+import ResponsiveWarning from 'components/ResponsiveWarning'
 
 import { css } from 'emotion'
 
@@ -105,6 +106,7 @@ const Layout = ({ children, location }) => (
               <Footer />
             </div>
           </div>
+          <ResponsiveWarning />
         </div>
       </>
     )}

@@ -70,7 +70,8 @@ Here's a list of some awesome features from this project:
 There's always something to improve:
 
 - [x] Improve README
-- [ ] Audit and improve website's SEO and ranking
+- [x] Audit and improve website's SEO and ranking
+- [ ] Migrate to DNS with SSL
 - [ ] Add tests
 - [ ] Make app responsive for mobile/tablet
 - [ ] Refactor and improve markup and styles
