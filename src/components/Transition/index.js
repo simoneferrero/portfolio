@@ -1,4 +1,6 @@
 import React from 'react'
+import { node, shape, string } from 'prop-types'
+
 import {
   TransitionGroup,
   Transition as ReactTransition,
@@ -52,6 +54,13 @@ class Transition extends React.PureComponent {
       </TransitionGroup>
     )
   }
+}
+
+Transition.propTypes = {
+  children: node.isRequired,
+  location: shape({
+    pathname: string.isRequired,
+  }).isRequired,
 }
 
 export default Transition

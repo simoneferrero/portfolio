@@ -81,7 +81,7 @@ const MainLogo = ({ selected }) => (
         }
       }
     `}
-    render={(data) => (
+    render={() => (
       <Link
         className={cx(mainLogoStyles, { [selectedStyles]: selected })}
         to="/"

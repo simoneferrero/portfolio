@@ -41,11 +41,19 @@
     "build": "gatsby build",
     "deploy": "npm install && gatsby build && surge --project ./public --domain simoneferrero.net",
     "develop": "gatsby develop",
+    "format": "npm run prettier -- --write",
+    "lint": "eslint src",
+    "precommit": "lint-staged",
+    "prettier": "prettier \"**/*.+(js|json|css)\"",
     "start": "npm run develop",
-    "format": "prettier --write \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "validate": "npm run lint && npm run prettier -- --list-different"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.9.0",
+    "eslint-plugin-react": "^7.11.1",
+    "husky": "^1.2.0",
     "prettier": "^1.15.2",
     "surge": "^0.20.1"
   },

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { colors } from 'css/theme'
 
-export default () => (
+const MainLogo = () => (
   <svg
     baseProfile="tiny"
     height="4.4rem"
@@ -56,3 +56,5 @@ export default () => (
     </g>
   </svg>
 )
+
+export default MainLogo

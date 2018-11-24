@@ -3,17 +3,23 @@ body {
   background-image: url('../images/background.jpg');
   background-position: top;
   background-size: cover;
-  color: #FFF;
+  color: #fff;
   overflow: hidden;
   text-align: center;
 }
 
-h1, h2, h3, h4, h5, p, blockquote {
-  color: #FFF;
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+blockquote {
+  color: #fff;
 }
 
 blockquote {
-  border-left-color: #FFF;
+  border-left-color: #fff;
 }
 
 a {

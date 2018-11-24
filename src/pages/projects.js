@@ -24,7 +24,7 @@ export default ({ data }) => {
   return (
     <>
       <p>
-        When I'm not busy working on ClearView Flex, I let my imagination go
+        When I‘m not busy working on ClearView Flex, I let my imagination go
         wild to create awesome projects and try out new technologies.
         <br />
         Below is a list of my latest public GitHub repos.

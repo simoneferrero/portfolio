@@ -1,0 +1,7 @@
+{
+  "*.+(js|json|css|md)": [
+    "npm run format",
+    "npm run validate",
+    "git add"
+  ]
+}

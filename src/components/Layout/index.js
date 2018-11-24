@@ -20,7 +20,9 @@ const wrapperStyles = css`
   min-width: 100%;
   min-height: 100vh;
 
-  & h1, & h2, & h3 {
+  & h1,
+  & h2,
+  & h3 {
     color: ${colors.white};
   }
 
