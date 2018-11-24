@@ -15,7 +15,7 @@ const iconStyles = css`
 export default () => (
   <>
     <p>
-      I‘m always up for a chat.
+      I&#39;m always up for a chat.
       <br />
       If you want to contact me, you can find me at any of the links below.
     </p>

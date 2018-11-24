@@ -50,8 +50,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
+        name: "Simone Ferrero's Portfolio",
+        short_name: 'portfolio',
         start_url: '/',
         background_color: '#1d1f23',
         theme_color: '#1d1f23',
@@ -61,8 +61,6 @@ module.exports = {
     },
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-emotion',
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
+    'gatsby-plugin-offline',
   ],
 }
