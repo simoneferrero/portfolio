@@ -13,12 +13,12 @@ export default () => (
       By night, I'm sadly not Batman. Yet.
     </p>
     <p>
-      I'm currently employed in London by a company called Sohonet, and my main
-      focus is the development of{' '}
-      <ExternalLink href="https://www.sohonet.com/clearview-flex/">
-        ClearView Flex
+      I'm currently employed in London by{' '}
+      <ExternalLink href="https://www.gamesyscorporate.com/">
+        Gamesys
       </ExternalLink>
-      .
+      , one of the UK leading gaming companies. My main
+      focus is the development of a tool called Babble, which is used internally to manage and moderate our community of players.
     </p>
     <p>
       I'm obsessed with React and its ecosystem, and I try really hard to keep

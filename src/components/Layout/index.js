@@ -1,5 +1,5 @@
 // TODO: refactor structure of code and components
-import React from 'react'
+import React, { useState } from 'react'
 import { node, shape, string } from 'prop-types'
 
 import Helmet from 'react-helmet'
@@ -8,6 +8,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import Transition from 'components/Transition'
+import Warning from 'components/Warning'
 
 import { css } from 'emotion'
 
@@ -20,7 +21,9 @@ const wrapperStyles = css`
   min-width: 100%;
   min-height: 100vh;
 
-  & h1, & h2, & h3 {
+  & h1,
+  & h2,
+  & h3 {
     color: ${colors.white};
   }
 
@@ -65,45 +68,51 @@ const contentStyles = css`
   border-bottom: 2px solid ${colors.white};
 `
 
-const Layout = ({ children, location }) => (
-  <StaticQuery
-    query={graphql`
-      query {
-        site {
-          siteMetadata {
-            title
+const Layout = ({ children, location }) => {
+  const [warning, setWarning] = useState(true)
+  console.log(warning)
+
+  return (
+    <StaticQuery
+      query={graphql`
+        query {
+          site {
+            siteMetadata {
+              title
+            }
           }
         }
-      }
-    `}
-    render={(data) => (
-      <>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
-          ]}
-        >
-          <html lang="en" />
-        </Helmet>
-        <div className={wrapperStyles}>
-          <Header currentPath={location.pathname} />
-          <div className={sectionWrapperStyles}>
-            <div className={contentStyles}>
-              <Transition location={location}>{children}</Transition>
+      `}
+      render={(data) => (
+        <>
+          <Helmet
+            title={data.site.siteMetadata.title}
+            meta={[
+              { name: 'description', content: 'Sample' },
+              { name: 'keywords', content: 'sample, something' },
+            ]}
+          >
+            <html lang="en" />
+          </Helmet>
+          <div className={wrapperStyles}>
+            <Header currentPath={location.pathname} />
+            <div className={sectionWrapperStyles}>
+              <div className={contentStyles}>
+                <Transition location={location}>{children}</Transition>
+              </div>
+            </div>
+            <div className={sectionWrapperStyles}>
+              <div>
+                <Footer />
+              </div>
             </div>
           </div>
-          <div className={sectionWrapperStyles}>
-            <div>
-              <Footer />
-            </div>
-          </div>
-        </div>
-      </>
-    )}
-  />
-)
+          {warning && <Warning setWarning={setWarning} />}
+        </>
+      )}
+    />
+  )
+}
 
 Layout.propTypes = {
   children: node.isRequired,
